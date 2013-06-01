@@ -11,6 +11,7 @@ var elefeely = elefeely || {};
 
     render: function () {
       this.loadHeader();
+      this.loadMain();
       this.loadFooter();
 
       return this;
@@ -19,6 +20,11 @@ var elefeely = elefeely || {};
     loadHeader: function () {
       var view = new elefeely.HeaderView();
       $('#header').html(view.render().el);
+    },
+
+    loadMain: function () {
+      var view = new elefeely.MainView();
+      $('#main').html(view.render().el);
     },
 
     loadFooter: function () {
