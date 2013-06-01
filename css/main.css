@@ -1,0 +1,60 @@
+body {
+  background: transparent url("../img/cartographer.png");
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  font-family: Helvetica;
+  font-size: 16px;
+}
+
+#feely {
+  color: #FFB6C1;
+}
+
+#logo {
+  padding: 50px;
+  color: #fff;
+  text-align: center;
+  font-family: 'Satisfy', cursive;
+  font-size: 75px;
+  font-weight: bold;
+  text-shadow: -2px -1px #444;
+}
+
+#main {
+  padding: 50px;
+  background: transparent url("../img/gplaypattern.png");
+  -moz-box-shadow: #fff 0 5px 6px 0;
+  -webkit-box-shadow: #fff 0 5px 6px 0;
+  -o-box-shadow: #fff 0 5px 6px 0;
+  box-shadow: #fff 0 5px 6px 0;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  margin-bottom: 50px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+#header {
+  text-align: center;
+}
+
+#subnav {
+  color: #aaa;
+}
+
+#login {
+  position: absolute right;
+  top: 300px;
+  right: -500px;
+  color: white;
+}
+
+#footer {
+  color: #fff;
+  text-align: center;
+}

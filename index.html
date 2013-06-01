@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Elefeely</title>
+  <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+  <link href='http://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+  <link href="css/main.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+  <div class="container">
+    <section id="header">
+    </section>
+
+    <section id="main">
+      This is some stuff
+    </section>
+
+    <section id="footer">
+    </section>
+  </div>
+
+  <script type="text/x-handlebars-template" id="header-template">
+    <div id="logo">Elefeely</div>
+    <div class="row">
+      <div id="subnav">
+        <a href="#">login / signup</a>
+        |
+        <a href="#">collective</a>
+      </div>
+    </div>
+  </script>
+
+  <script type="text/x-handlebars-template" id="footer-template">
+    Crafted by <a href="http://twitter.com/raphweiner" target="_blank">Raphael Weiner</a>
+  </script>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0-rc.4/handlebars.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+
+  <script src="js/models/feeling.js"></script>
+  <script src="js/collections/feelings.js"></script>
+  <script src="js/views/app.js"></script>
+  <script src="js/views/header.js"></script>
+  <script src="js/views/footer.js"></script>
+  <script src="js/views/list.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
