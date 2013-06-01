@@ -51,6 +51,22 @@
     {{feeling.score}}
   </script>
 
+  <script type="text/x-handlebars-template" id="login-signup-template">
+    <div class="control-group email">
+      <input type="text" class="span3" id="email" placeholder="email">
+      <br>
+      <span class="help-inline email-error"></span>
+    </div>
+
+    <div class="control-group pass">
+      <input type="password" class="span3" id="password" placeholder="password">
+      <br>
+      <span class="help-inline pass-error"></span>
+    </div>
+
+    <button class="btn btn-primary" id="create-session">Submit</button>
+  </script>
+
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/json3/3.2.4/json3.min.js"></script>
   <script src="http://cdnjs.cloudflare.com/ajax/libs/handlebars.js/1.0.0-rc.4/handlebars.min.js"></script>
@@ -65,6 +81,7 @@
   <script src="js/views/footer.js"></script>
   <script src="js/views/collective.js"></script>
   <script src="js/views/feeling.js"></script>
+  <script src="js/views/loginSignup.js"></script>
   <script src="js/app.js"></script>
 </body>
 </html>

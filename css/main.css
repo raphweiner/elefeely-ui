@@ -54,7 +54,17 @@ body {
   color: white;
 }
 
+a:hover {
+  text-decoration:none;
+  cursor: pointer;
+}
+
 #footer {
   color: #fff;
   text-align: center;
+}
+
+.error {
+  color: red;
+  font-size: 0.8em;
 }
