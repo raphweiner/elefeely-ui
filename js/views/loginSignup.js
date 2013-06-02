@@ -27,26 +27,12 @@ var elefeely = elefeely || {};
         },
 
         submitLoginSignup: function () {
-            var intention = this.$("#submit-login-signup").text().toLowerCase(),
+            var loginSignup = this.$("#submit-login-signup").text().toLowerCase(),
                 email = this.$('#email').val(),
                 password = this.$('#password').val(),
-                path = intention === 'login' ? '/sessions' : '/users';
+                path = loginSignup === 'login' ? '/sessions' : '/users';
 
-            if (!email) {
-                this.$('.email').addClass('error');
-                this.$('.email-error').html('Please enter an email');
-            } else {
-                this.$('.email').removeClass('error');
-                this.$('.email-error').html('');
-            }
-
-            if (!password) {
-                this.$('.password').addClass('error');
-                this.$('.password-error').html('Please enter a password');
-            } else {
-                this.$('.password').removeClass('error');
-                this.$('.password-error').html('');
-            }
+            this.validateInput(email, password);
 
             if (email && password) {
                 $.ajax({
@@ -73,6 +59,31 @@ var elefeely = elefeely || {};
                     }
                 });
             }
+        },
+
+        validateInput: function (email, password) {
+            if (!email) {
+                this.inputError('.email', 'Please enter an email');
+            } else {
+                this.clearError('.email');
+            }
+
+            if (!password) {
+                this.inputError('.password', 'Please enter a password');
+            } else {
+                this.clearError('.password');
+            }
+
+        },
+
+        inputError: function (field, text) {
+            this.$(field).addClass('error');
+            this.$(field + '-error').html(text);
+        },
+
+        clearError: function (field) {
+            this.$(field).removeClass('error');
+            this.$(field + '-error').html('');
         }
     });
 })();
