@@ -41,11 +41,11 @@ var elefeely = elefeely || {};
             }
 
             if (!password) {
-                this.$('.pass').addClass('error');
-                this.$('.pass-error').html('Please enter a password');
+                this.$('.password').addClass('error');
+                this.$('.password-error').html('Please enter a password');
             } else {
-                this.$('.pass').removeClass('error');
-                this.$('.pass-error').html('');
+                this.$('.password').removeClass('error');
+                this.$('.password-error').html('');
             }
 
             if (email && password) {
@@ -56,16 +56,22 @@ var elefeely = elefeely || {};
                     dataType: 'json',
                     data: { user: { email: email, password: password } },
                     success: function (data) {
-                        console.log(["login request data", data]);
+                        window.location.replace('#');
+                    },
+                    error: function (response) {
+                        var errors = response.responseJSON;
 
-                        if (data.error) {
-                            $('.alert-error').text(data.error.text).show();
-                        } else {
-                            window.location.replace('#');
+                        if (errors.email) {
+                            $('.email').addClass('error');
+                            $('.email-error').html(errors.email);
+                        }
+
+                        if (errors.password) {
+                            $('.password').addClass('error');
+                            $('.password-error').html(errors.password);
                         }
                     }
                 });
-                console.log("Make post to sessions#create");
             }
         }
     });
