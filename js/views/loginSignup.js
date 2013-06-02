@@ -23,6 +23,15 @@ var elefeely = elefeely || {};
             if (!$(e.currentTarget).hasClass('active')) {
                 this.$(".toggle-pill").toggleClass("active");
                 this.$("#submit-login-signup").text(target);
+
+                this.clearError('.email');
+                this.clearError('.password');
+
+                if (target === 'Login') {
+                    this.$("#forgot-password").show();
+                } else {
+                    this.$("#forgot-password").hide();
+                }
             }
         },
 
@@ -73,7 +82,6 @@ var elefeely = elefeely || {};
             } else {
                 this.clearError('.password');
             }
-
         },
 
         inputError: function (field, text) {
