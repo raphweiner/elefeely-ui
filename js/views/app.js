@@ -2,42 +2,42 @@ var elefeely = elefeely || {};
 
 (function () {
 
-    elefeely.AppView = Backbone.View.extend({
+  elefeely.AppView = Backbone.View.extend({
 
-        initialize: function () {
-            _.bindAll(this, 'render', 'loadHeader');
+    initialize: function () {
+      _.bindAll(this, 'render', 'loadHeader');
 
-            //this.listenTo(elefeely, 'auth:changed', this.loadHeader);
-            elefeely.on('auth:changed', this.loadHeader);
+      //this.listenTo(elefeely, 'auth:changed', this.loadHeader);
+      elefeely.on('auth:changed', this.loadHeader);
 
-            this.render();
-        },
+      this.render();
+    },
 
-        render: function () {
-            this.loadHeader();
-            this.loadMain();
-            this.loadFooter();
+    render: function () {
+      this.loadHeader();
+      this.loadMain();
+      this.loadFooter();
 
-            return this;
-        },
+      return this;
+    },
 
-        loadHeader: function () {
-            var view = new elefeely.HeaderView();
-            $('#header').html(view.render().el);
-        },
+    loadHeader: function () {
+      var view = new elefeely.HeaderView();
+      $('#header').html(view.render().el);
+    },
 
-        loadMain: function () {
-            var view = new elefeely.MainView();
-            $('#main').html(view.render().el);
-        },
+    loadMain: function () {
+      var view = new elefeely.MainView();
+      $('#main').html(view.render().el);
+    },
 
-        loadFooter: function () {
-            var view = new elefeely.FooterView();
-            $('#footer').html(view.render().el);
-        },
+    loadFooter: function () {
+      var view = new elefeely.FooterView();
+      $('#footer').html(view.render().el);
+    },
 
-        showPersonal: function() {
-            // TODO: load personal view into white container
-        }
-    });
+    showPersonal: function() {
+      // TODO: load personal view into white container
+    }
+  });
 })();

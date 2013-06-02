@@ -2,17 +2,16 @@ var elefeely = elefeely || {};
 
 (function () {
 
-    elefeely.Router = Backbone.Router.extend({
+  elefeely.Router = Backbone.Router.extend({
 
-        routes: {
-            "personal": "personal"
-        },
+    routes: {
+      "personal": "personal"
+    },
 
-        personal: function () {
-            elefeely.appView.showPersonal();
-        }
+    personal: function () {
+      elefeely.appView.showPersonal();
+    }
 
-    });
-
+  });
 })();
 

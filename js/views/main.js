@@ -2,14 +2,14 @@ var elefeely = elefeely || {};
 
 (function () {
 
-    elefeely.MainView = Backbone.View.extend({
+  elefeely.MainView = Backbone.View.extend({
 
-        template: Handlebars.compile($('#main-template').html()),
+    template: Handlebars.compile($('#main-template').html()),
 
-        render: function () {
-            this.$el.html(this.template());
-            return this;
-        }
+    render: function () {
+      this.$el.html(this.template());
+      return this;
+    }
 
-    });
+  });
 })();
