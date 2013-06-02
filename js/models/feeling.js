@@ -1,4 +1,4 @@
-var elefeely = elefeely || {};
+var elefeely = window.elefeely || {};
 
 (function () {
 

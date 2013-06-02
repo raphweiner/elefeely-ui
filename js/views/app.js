@@ -5,7 +5,11 @@ var elefeely = elefeely || {};
     elefeely.AppView = Backbone.View.extend({
 
         initialize: function () {
-            _.bindAll(this, 'render');
+            _.bindAll(this, 'render', 'loadHeader');
+
+            //this.listenTo(elefeely, 'auth:changed', this.loadHeader);
+            elefeely.on('auth:changed', this.loadHeader);
+
             this.render();
         },
 
@@ -30,6 +34,10 @@ var elefeely = elefeely || {};
         loadFooter: function () {
             var view = new elefeely.FooterView();
             $('#footer').html(view.render().el);
+        },
+
+        showPersonal: function() {
+            // TODO: load personal view into white container
         }
     });
 })();

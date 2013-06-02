@@ -1,4 +1,10 @@
+var elefeely = window.elefeely || {};
+
 $(function () {
+
+    elefeely.on = Backbone.Events.on;
+    elefeely.off = Backbone.Events.off;
+    elefeely.trigger = Backbone.Events.trigger;
 
     $.ajaxSetup({
         statusCode: {
@@ -11,12 +17,10 @@ $(function () {
         }
     });
 
+    elefeely.autoSignIn(function() {
+        elefeely.appView = new elefeely.AppView();
 
-  // feelings = new elefeely.Feelings;
-
-  // feelings.fetch().done(function() {
-  //   console.log('fetched ' + feelings.length + ' models from the server');
-  // });
-
-    new elefeely.AppView();
+        new elefeely.Router();
+        Backbone.history.start();
+    });
 });

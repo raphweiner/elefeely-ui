@@ -7,12 +7,11 @@ var elefeely = elefeely || {};
         template: Handlebars.compile($('#collective-template').html()),
 
         render: function () {
-            this.$el.html(this.template());
             console.log("render collective");
-            this.collection = new elefeely.Feelings;
-            this.collection.fetch();
-
+            this.$el.html(this.template());
             this.showFeelings();
+            console.log(this.collection);
+
             return this;
         },
 

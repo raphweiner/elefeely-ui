@@ -1,27 +1,52 @@
-window.signIn = function(done) {
-    var accessToken = $.cookie('access_token');
+var elefeely = window.elefeely || {};
+
+var getAccessToken = function() {
+    return $.cookie('token');
+};
+
+elefeely.setCurrentUser = function(user) {
+    $.cookie('token', user.token);
+    elefeely.currentUser = new elefeely.User(user);
+    elefeely.trigger('auth:changed');
+};
+
+elefeely.signOut = function() {
+    $.removeCookie('token');
+    elefeely.trigger('auth:changed');
+    window.location.reload();
+};
+
+elefeely.autoSignIn = function(done) {
+    var accessToken = getAccessToken();
 
     if ( accessToken ) {
-        $.getJSON('/people/me').done(function (data) {
-            window.currentUser = new User(data);
-            done();
+        var currentUser = new elefeely.User({ token: accessToken });
+        currentUser.url = '/users/me';
+        currentUser.fetch({
+            success: function() {
+                elefeely.setCurrentUser(currentUser);
+                done();
+            },
+            error: function () {
+                $.removeCookie('token');
+                done();
+            }
         });
     } else {
         done();
     }
 };
 
-
-signIn(function() {
-    new elefeely.AppView();
-});
-
 var myAjax = function(options) {
+    console.log('using my ajax');
     options = options || {};
-    options.url = 'https://elefeely.com' + options.url;
-    if(currentUser) {
-        // TODO: attach currentUser.get('token') to query string or header
+    options.url = 'http://elefeely-api.herokuapp.com' + options.url;
+
+    var accessToken = getAccessToken();
+    if ( accessToken ) {
+        options.url += '?token=' + accessToken;
     }
+    console.log(options);
     $.ajax(options);
 };
 

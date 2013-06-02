@@ -6,7 +6,7 @@ var elefeely = elefeely || {};
 
         events: {
             'click #submit-login-signup': 'submitLoginSignup',
-            'click .toggle-pill': 'togglePill',
+            'click .toggle-pill': 'togglePill'
         },
 
         template: Handlebars.compile($('#login-signup-template').html()),
@@ -46,14 +46,14 @@ var elefeely = elefeely || {};
             if (email && password) {
                 $.ajax({
                     // http://elefeely-api.herokuapp.com
-                    url: 'http://localhost:3000' + path,
+                    url: 'http://elefeely-api.herokuapp.com' + path,
                     type: 'POST',
                     dataType: 'json',
                     data: { user: { email: email, password: password } },
                     success: function (data) {
-                        console.log(['token', data.token]);
-                        $.cookie('token', data.token);
-                        window.location.replace('#personal');
+                        elefeely.setCurrentUser(data);
+
+                        Backbone.history.navigate('personal', { trigger: true });
                     },
                     error: function (response) {
                         var errors = response.responseJSON;

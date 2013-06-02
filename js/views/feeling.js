@@ -4,10 +4,6 @@ var elefeely = elefeely || {};
 
     elefeely.FeelingView = Backbone.View.extend({
 
-        // tagName: 'div',
-
-        // className: 'span2',
-
         template: Handlebars.compile($('#feeling-template').html()),
 
         initialize: function () {

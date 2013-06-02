@@ -12,14 +12,20 @@ var elefeely = elefeely || {};
         template: Handlebars.compile($('#header-template').html()),
 
         render: function () {
-            this.$el.html(this.template());
+            console.log(['current:', elefeely.currentUser]);
+            this.$el.html(this.template({ isSignedIn: !!elefeely.currentUser }));
             return this;
         },
 
         showCollective: function () {
-            console.log('show collective');
-            var view = new elefeely.CollectiveView({collection: elefeely.FeelingList});
-            $('#main').html(view.render().el);
+            // $('#main').html <- load spinner in here
+            var feelings = new elefeely.Feelings;
+            feelings.fetch({
+                success: function() {
+                    var view = new elefeely.CollectiveView({collection: feelings});
+                    $('#main').html(view.render().el);
+                }
+            });
         },
 
         showLoginSignup: function () {
