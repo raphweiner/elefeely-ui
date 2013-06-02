@@ -7,7 +7,6 @@ var elefeely = elefeely || {};
     initialize: function () {
       _.bindAll(this, 'render', 'loadHeader');
 
-      //this.listenTo(elefeely, 'auth:changed', this.loadHeader);
       elefeely.on('auth:changed', this.loadHeader);
 
       this.render();
@@ -37,7 +36,8 @@ var elefeely = elefeely || {};
     },
 
     showPersonal: function() {
-      // TODO: load personal view into white container
+      Backbone.history.navigate('personal', { trigger: true });
     }
+
   });
 })();

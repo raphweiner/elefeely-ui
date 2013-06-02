@@ -31,6 +31,7 @@ elefeely.signOut = function() {
   $.removeCookie('token');
   elefeely.currentUser = null
   elefeely.trigger('auth:changed');
+  window.location.hash = '';
   window.location.reload();
 };
 

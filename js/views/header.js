@@ -6,7 +6,9 @@ var elefeely = elefeely || {};
 
     events: {
       'click #collective': 'showCollective',
-      'click #login-signup': 'showLoginSignup'
+      'click #login-signup': 'showLoginSignup',
+      'click #personal': 'showPersonal',
+      'click #logout': 'logout'
     },
 
     template: Handlebars.compile($('#header-template').html()),
@@ -29,10 +31,17 @@ var elefeely = elefeely || {};
     },
 
     showLoginSignup: function () {
-      console.log('show loginSignup');
       var view = new elefeely.LoginSignupView();
       $('#main').html(view.render().el);
-    }
+    },
 
+    logout: function () {
+      elefeely.signOut();
+    },
+
+    showPersonal: function () {
+      var view = new elefeely.PersonalView
+      $('#main').html(view.render().el)
+    }
   });
 })();
