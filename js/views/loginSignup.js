@@ -5,7 +5,8 @@ var elefeely = elefeely || {};
     elefeely.LoginSignupView = Backbone.View.extend({
 
         events: {
-            'click #create-session': 'createSession'
+            'click #submit-login-signup': 'submitLoginSignup',
+            'click .toggle-pill': 'togglePill',
         },
 
         template: Handlebars.compile($('#login-signup-template').html()),
@@ -16,9 +17,20 @@ var elefeely = elefeely || {};
             return this;
         },
 
-        createSession: function () {
-            var email = this.$('#email').val(),
-                pass = this.$('#password').val();
+        togglePill: function (e) {
+            var target = $(e.currentTarget).find('a').text();
+
+            if (!$(e.currentTarget).hasClass('active')) {
+                this.$(".toggle-pill").toggleClass("active");
+                this.$("#submit-login-signup").text(target);
+            }
+        },
+
+        submitLoginSignup: function () {
+            var intention = this.$("#submit-login-signup").text().toLowerCase(),
+                email = this.$('#email').val(),
+                password = this.$('#password').val(),
+                path = intention === 'login' ? '/sessions' : '/users';
 
             if (!email) {
                 this.$('.email').addClass('error');
@@ -28,7 +40,7 @@ var elefeely = elefeely || {};
                 this.$('.email-error').html('');
             }
 
-            if (!pass) {
+            if (!password) {
                 this.$('.pass').addClass('error');
                 this.$('.pass-error').html('Please enter a password');
             } else {
@@ -36,11 +48,12 @@ var elefeely = elefeely || {};
                 this.$('.pass-error').html('');
             }
 
-            if (email && pass) {
+            if (email && password) {
                 $.ajax({
-                    url: 'http://elefeely-api.herokuapp.com/sessions',
+                    url: 'http://elefeely-api.herokuapp.com' + path,
                     type: 'POST',
                     dataType: 'json',
+                    data: { email: email, password: password },
                     success: function (data) {
                         console.log(["login request data", data]);
 
