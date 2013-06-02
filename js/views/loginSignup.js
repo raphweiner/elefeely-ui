@@ -51,7 +51,9 @@ var elefeely = elefeely || {};
                     dataType: 'json',
                     data: { user: { email: email, password: password } },
                     success: function (data) {
-                        window.location.replace('#');
+                        console.log(['token', data.token]);
+                        $.cookie('token', data.token);
+                        window.location.replace('#personal');
                     },
                     error: function (response) {
                         var errors = response.responseJSON;
