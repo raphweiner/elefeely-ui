@@ -8,7 +8,8 @@ var elefeely = elefeely || {};
 
     render: function () {
       console.log(['current:', elefeely.currentUser]);
-      this.$el.html(this.template({ isSignedIn: !!elefeely.currentUser }));
+      this.$el.html(this.template({ isSignedIn: !!elefeely.currentUser,
+                                    currentUser:  elefeely.currentUser }));
       return this;
     }
 

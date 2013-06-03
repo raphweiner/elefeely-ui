@@ -67,3 +67,12 @@ a:hover {
 #forgot-password {
   font-size: 0.8em;
 }
+
+#avatar:hover {
+  -webkit-transform: rotate(360deg) scale(1.15);
+  -moz-transform: rotate(360deg) scale(1.15);
+  -o-transform: rotate(360deg) scale(1.15);
+  -ms-transform: rotate(360deg) scale(1.15);
+  transform: rotate(360deg) scale(1.15);
+  cursor: pointer;
+}

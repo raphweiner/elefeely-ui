@@ -10,7 +10,6 @@ var elefeely = elefeely || {};
       console.log("render collective");
       this.$el.html(this.template());
       this.showFeelings();
-      console.log(this.collection);
 
       return this;
     },
@@ -20,7 +19,7 @@ var elefeely = elefeely || {};
     },
 
     showOne: function (feeling) {
-      console.log('showing:' + feeling.score);
+      console.log('showing:' + feeling);
       var view = new elefeely.FeelingView({ model: feeling });
       this.$('#feelings').append(view.render().el);
     }
