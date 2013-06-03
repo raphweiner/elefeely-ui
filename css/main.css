@@ -69,10 +69,14 @@ a:hover {
 }
 
 #avatar:hover {
-  -webkit-transform: rotate(360deg) scale(1.15);
-  -moz-transform: rotate(360deg) scale(1.15);
-  -o-transform: rotate(360deg) scale(1.15);
-  -ms-transform: rotate(360deg) scale(1.15);
-  transform: rotate(360deg) scale(1.15);
+  -webkit-transform: rotate(360deg) scale(1.05);
+  -moz-transform: rotate(360deg) scale(1.05);
+  -o-transform: rotate(360deg) scale(1.05);
+  -ms-transform: rotate(360deg) scale(1.05);
+  transform: rotate(360deg) scale(1.05);
   cursor: pointer;
+}
+
+.muted {
+  font-size: 0.8em;
 }

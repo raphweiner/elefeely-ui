@@ -61,7 +61,17 @@
   </script>
 
   <script type="text/x-handlebars-template" id="settings-template">
-    Settings
+    <p class="lead">Where would you like to receive your texts?</p>
+    <br>
+    <div class="control-group phone">
+    <input type="text" class="span3" placeholder="ex. 4157451000">
+    <br>
+    <span class="help-inline email-error"></span>
+    </div>
+    <button type="submit" class="btn">Add</button>
+    <br>
+    <p class="muted">Note: We will send you a confirmation text to verify your number</p>
+    <button type="submit" id="delete-account" class="pull-right btn-small btn-danger">Delete Account</button>
   </script>
 
   <script type="text/x-handlebars-template" id="personal-template">
