@@ -36,7 +36,19 @@ var elefeely = elefeely || {};
     },
 
     showPersonal: function() {
-      Backbone.history.navigate('personal', { trigger: true });
+      var view = new elefeely.PersonalView();
+      $('#main').html(view.render().el);
+    },
+
+    showCollective: function () {
+      // $('#main').html <- load spinner in here
+      var feelings = new elefeely.Feelings;
+      feelings.fetch({
+        success: function() {
+          var view = new elefeely.CollectiveView({collection: feelings});
+          $('#main').html(view.render().el);
+        }
+      });
     }
 
   });

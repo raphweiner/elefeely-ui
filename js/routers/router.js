@@ -5,11 +5,27 @@ var elefeely = elefeely || {};
   elefeely.Router = Backbone.Router.extend({
 
     routes: {
-      "personal": "personal"
+      "personal": "personal",
+      "collective": "collective",
+      "logout": "logout",
+      "login": "login"
     },
 
     personal: function () {
       elefeely.appView.showPersonal();
+    },
+
+    collective: function () {
+      elefeely.appView.showCollective();
+    },
+
+    logout: function () {
+      elefeely.signOut();
+    },
+
+    login: function () {
+      var view = new elefeely.LoginSignupView();
+      $('#main').html(view.render().el);
     }
 
   });

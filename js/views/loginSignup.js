@@ -39,24 +39,26 @@ var elefeely = elefeely || {};
       var loginSignup = this.$("#submit-login-signup").text().toLowerCase(),
           email = this.$('#email').val(),
           password = this.$('#password').val(),
-          path = loginSignup === 'login' ? '/sessions' : '/users';
+          path = loginSignup === 'login' ? '/login' : '/users',
+          verb = loginSignup === 'login' ? 'GET' : 'POST';
 
       this.validateInput(email, password);
 
       if (email && password) {
         $.ajax({
           // http://elefeely-api.herokuapp.com
-          url: 'http://elefeely-api.herokuapp.com' + path,
-          type: 'POST',
+          url: 'http://localhost:3000' + path,
+          type: verb,
           dataType: 'json',
           data: { user: { email: email, password: password } },
           success: function (data) {
             elefeely.setCurrentUser(data);
-
             Backbone.history.navigate('personal', { trigger: true });
           },
           error: function (response) {
             var errors = response.responseJSON;
+
+            console.log(errors);
 
             if (errors.email) {
               $('.email').addClass('error');
@@ -66,6 +68,12 @@ var elefeely = elefeely || {};
             if (errors.password) {
               $('.password').addClass('error');
               $('.password-error').html(errors.password);
+            }
+
+            // temporary hack to display 'wrong email/password combination'
+            if (errors.error) {
+              $('.password').addClass('error');
+              $('.password-error').html(errors.error);
             }
           }
         });
