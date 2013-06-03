@@ -1,5 +1,8 @@
 var elefeely = window.elefeely || {};
 
+// elefeely.url = 'http://elefeely-api.herokuapp.com';
+elefeely.url = 'http://localhost:3000';
+
 var getAccessToken = function() {
   return $.cookie('token');
 };
@@ -7,7 +10,7 @@ var getAccessToken = function() {
 var myAjax = function(options) {
   console.log('using my ajax');
   options = options || {};
-  options.url = 'http://elefeely-api.herokuapp.com' + options.url;
+  options.url = elefeely.url + options.url;
 
   var accessToken = getAccessToken();
 

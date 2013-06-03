@@ -54,6 +54,11 @@ var elefeely = elefeely || {};
     showLogin: function () {
       var view = new elefeely.LoginSignupView();
       $('#main').html(view.render().el);
+    },
+
+    showSettings: function () {
+      var view = new elefeely.SettingsView({currentUser: elefeely.currentUser});
+      $('#main').html(view.render().el);
     }
 
   });

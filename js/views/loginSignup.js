@@ -46,8 +46,7 @@ var elefeely = elefeely || {};
 
       if (email && password) {
         $.ajax({
-          // http://elefeely-api.herokuapp.com
-          url: 'http://localhost:3000' + path,
+          url: elefeely.url + path,
           type: verb,
           dataType: 'json',
           data: { user: { email: email, password: password } },
