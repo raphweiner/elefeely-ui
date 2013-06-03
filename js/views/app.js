@@ -49,6 +49,11 @@ var elefeely = elefeely || {};
           $('#main').html(view.render().el);
         }
       });
+    },
+
+    showLogin: function () {
+      var view = new elefeely.LoginSignupView();
+      $('#main').html(view.render().el);
     }
 
   });

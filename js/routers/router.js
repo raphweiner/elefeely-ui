@@ -5,10 +5,10 @@ var elefeely = elefeely || {};
   elefeely.Router = Backbone.Router.extend({
 
     routes: {
-      "personal": "personal",
+      "personal":   "personal",
       "collective": "collective",
-      "logout": "logout",
-      "login": "login"
+      "logout":     "logout",
+      "login":      "login"
     },
 
     personal: function () {
@@ -24,8 +24,7 @@ var elefeely = elefeely || {};
     },
 
     login: function () {
-      var view = new elefeely.LoginSignupView();
-      $('#main').html(view.render().el);
+      elefeely.appView.showLogin();
     }
 
   });
