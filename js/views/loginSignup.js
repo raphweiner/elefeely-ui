@@ -60,19 +60,19 @@ var elefeely = elefeely || {};
             console.log(errors);
 
             if (errors.email) {
-              $('.email').addClass('error');
-              $('.email-error').html(errors.email);
+              this.$('.email').addClass('error');
+              this.$('.email-error').html(errors.email);
             }
 
             if (errors.password) {
-              $('.password').addClass('error');
-              $('.password-error').html(errors.password);
+              this.$('.password').addClass('error');
+              this.$('.password-error').html(errors.password);
             }
 
             // temporary hack to display 'wrong email/password combination'
             if (errors.error) {
-              $('.password').addClass('error');
-              $('.password-error').html(errors.error);
+              this.$('.password').addClass('error');
+              this.$('.password-error').html(errors.error);
             }
           }
         });

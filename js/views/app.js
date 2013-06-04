@@ -13,6 +13,8 @@ var elefeely = elefeely || {};
     },
 
     render: function () {
+      this.$main = $('#main');
+
       this.loadHeader();
       this.loadMain();
       this.loadFooter();
@@ -27,7 +29,7 @@ var elefeely = elefeely || {};
 
     loadMain: function () {
       var view = new elefeely.MainView();
-      $('#main').html(view.render().el);
+      this.showView(view);
     },
 
     loadFooter: function () {
@@ -36,29 +38,47 @@ var elefeely = elefeely || {};
     },
 
     showPersonal: function() {
-      var view = new elefeely.PersonalView();
-      $('#main').html(view.render().el);
+      // this.$main.html <- load spinner in here
+      var feelings = new elefeely.PersonalFeelings;
+      feelings.fetch({
+        success: function() {
+          var view = new elefeely.PersonalView({ collection: feelings });
+          this.showView(view);
+        }.bind(this),
+        error: function () {
+          var view = new elefeely.PersonalView();
+          this.showView(view);
+        }.bind(this)
+      });
     },
 
     showCollective: function () {
-      // $('#main').html <- load spinner in here
-      var feelings = new elefeely.Feelings;
+      // this.$main.html <- load spinner in here
+      var feelings = new elefeely.CollectiveFeelings;
       feelings.fetch({
         success: function() {
-          var view = new elefeely.CollectiveView({collection: feelings});
-          $('#main').html(view.render().el);
-        }
+          var view = new elefeely.CollectiveView({ collection: feelings });
+          this.showView(view);
+        }.bind(this),
+        error: function () {
+          var view = new elefeely.CollectiveView();
+          this.showView(view);
+        }.bind(this)
       });
     },
 
     showLogin: function () {
       var view = new elefeely.LoginSignupView();
-      $('#main').html(view.render().el);
+      this.showView(view);
     },
 
     showSettings: function () {
       var view = new elefeely.SettingsView({currentUser: elefeely.currentUser});
-      $('#main').html(view.render().el);
+      this.showView(view);
+    },
+
+    showView: function (view) {
+      this.$main.html(view.render().el);
     }
 
   });
