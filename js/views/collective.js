@@ -13,43 +13,53 @@ var elefeely = elefeely || {};
     },
 
     render: function () {
+      var that = this;
+
       this.$el.html(this.template({ view: 'Collective'}));
-      this.graphOverall();
+
+      setTimeout(function() {
+        that.graphOverall();
+      }, 0);
 
       return this;
     },
 
     graphOverall: function () {
-      var canvas = this.$("#drawing").get(0),
-          context = canvas.getContext("2d"),
-          data,
-          max;
+      var data;
 
       this.toggleActivePill('#overall');
-      this.clearCanvas(canvas);
 
       data = this.collection.overall();
-      max = _.max(data);
 
-      _.each(data, function (score_percent, score) {
-        elefeely.utils.bar(context, max, 5, score, score_percent);
+      new Morris.Donut({
+        element: 'drawing',
+        data: data,
       });
     },
 
     graphDayOfWeek: function (e) {
-      var canvas = this.$("#drawing").get(0),
-          context = canvas.getContext("2d"),
-          data,
-          max;
+      var data;
 
       this.toggleActivePill('#day-of-week');
-      this.clearCanvas(canvas);
 
       data = this.collection.dayOfWeek();
-      max = _.max(data);
+      console.log(data);
+      // data =  [
+      //     { day: 'Sunday', feeling: 4 },
+      //     { day: 'Monday', feeling: 3 },
+      //     { day: 'Tuesday', feeling: 2 },
+      //     { day: 'Wednesday', feeling: 3 },
+      //     { day: 'Thursday', feeling: 5 },
+      //     { day: 'Friday', feeling: 1 },
+      //     { day: 'Saturday', feeling: 2 }
+      //   ]
 
-      _.each(data, function (avg_score, day_of_week) {
-        elefeely.utils.bar(context, max, 7, day_of_week, avg_score);
+      new Morris.Bar({
+        element: 'drawing',
+        data: data,
+        xkey: 'day',
+        ykeys: ['feeling'],
+        labels: ['Feeling']
       });
     },
 

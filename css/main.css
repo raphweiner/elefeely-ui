@@ -92,6 +92,7 @@ a:hover {
   margin-left: auto;
   margin-right: auto;
 }
+
 .pull-right>.dropdown-menu {
   right: 2em;
   left: auto;
@@ -101,19 +102,28 @@ a:hover {
 #footer {
   padding-bottom: 40px;
 }
+
 .marketing {
   margin-bottom: 1.5em;
 }
+
 .marketing-image {
   width: 220px;
 }
+
 .marketing-heading {
   float: left;
   margin-left: .7em;
 }
+
 .marketing-copy {
   width: 45%;
   float: left;
   text-align: left;
   margin-left: 1em;
+}
+
+#drawing {
+  width: 400px;
+  height: 250px;
 }
