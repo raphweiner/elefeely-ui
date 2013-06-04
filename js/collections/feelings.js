@@ -27,7 +27,7 @@ var elefeely = elefeely || {};
     },
 
     timeOfDay: function () {
-      // {1 => COUNT, 2 => COUNT, ..} (key is hour, value is avg. feeling (1-5))
+      // {1 => 1-5, 2 => 1-5, ..} (key is hour, value is avg. feeling (1-5))
       return this.countBy(function (feeling) {
         return feeling.timeOfDay();
       })
