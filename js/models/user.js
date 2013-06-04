@@ -3,7 +3,7 @@ var elefeely = elefeely || {};
 (function () {
 
   elefeely.User = Backbone.Model.extend({
-    urlRoot: '/users',
+    url: '/users/me',
 
     initialize: function () {
       _.bindAll(this, 'avatar');

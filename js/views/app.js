@@ -73,7 +73,7 @@ var elefeely = elefeely || {};
     },
 
     showSettings: function () {
-      var view = new elefeely.SettingsView({currentUser: elefeely.currentUser});
+      var view = new elefeely.SettingsView();
       this.showView(view);
     },
 

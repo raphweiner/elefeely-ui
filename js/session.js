@@ -8,7 +8,6 @@ var getAccessToken = function() {
 };
 
 var myAjax = function(options) {
-  console.log('using my ajax');
   options = options || {};
   options.url = elefeely.url + options.url;
 
@@ -18,7 +17,6 @@ var myAjax = function(options) {
     options.url += '?token=' + accessToken;
   }
 
-  console.log(options);
   $.ajax(options);
 };
 

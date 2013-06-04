@@ -63,15 +63,29 @@
   <script type="text/x-handlebars-template" id="settings-template">
     <p class="lead">Where would you like to receive your texts?</p>
     <br>
-    <div class="control-group phone">
-    <input type="text" class="span3" placeholder="ex. 4157451000">
+    {{#if phone}}
+      {{phone.number}}
+      <br>
+      {{#if phone.isVerified}}
+        <small class="text-success">Verified</small>
+      {{else}}
+        <small class="text-warning">Pending verification</small>
+      {{/if}}
+      <br>
+      <button id="delete-phone" class="btn btn-small btn-danger">Remove Phone</button>
+    {{else}}
+      <div class="control-group phone">
+      <input type="text" id="number" class="span3" placeholder="ex. 4157451000">
+      <br>
+      <span class="help-inline phone-error"></span>
+      </div>
+      <button id="add-phone" class="btn">Add</button>
+      <br>
+      <p class="muted">Note: We will send you a confirmation text to verify your number</p>
+    {{/if}}
     <br>
-    <span class="help-inline email-error"></span>
-    </div>
-    <button type="submit" class="btn">Add</button>
     <br>
-    <p class="muted">Note: We will send you a confirmation text to verify your number</p>
-    <button type="submit" id="delete-account" class="pull-right btn-small btn-danger">Delete Account</button>
+    <button type="submit" id="delete-account" class="pull-right btn btn-small btn-danger">Delete Account</button>
   </script>
 
   <script type="text/x-handlebars-template" id="personal-collective-template">
