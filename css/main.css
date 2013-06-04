@@ -9,8 +9,11 @@ body {
   font-size: 16px;
 }
 
-#logo {
+header {
   padding: 50px;
+}
+
+#logo {
   color: #fff;
   text-align: center;
   font-family: 'Satisfy', cursive;
@@ -67,7 +70,10 @@ a:hover {
 #forgot-password {
   font-size: 0.8em;
 }
-
+#avatar {
+  position: absolute;
+  right: 2em;
+}
 #avatar:hover {
   -webkit-transform: rotate(360deg) scale(1.05);
   -moz-transform: rotate(360deg) scale(1.05);
@@ -79,4 +85,35 @@ a:hover {
 
 .muted {
   font-size: 0.8em;
+}
+
+.nav {
+  width: 307px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.pull-right>.dropdown-menu {
+  right: 2em;
+  left: auto;
+  top: 2.5em;
+}
+
+#footer {
+  padding-bottom: 40px;
+}
+.marketing {
+  margin-bottom: 1.5em;
+}
+.marketing-image {
+  width: 220px;
+}
+.marketing-heading {
+  float: left;
+  margin-left: .7em;
+}
+.marketing-copy {
+  width: 45%;
+  float: left;
+  text-align: left;
+  margin-left: 1em;
 }
