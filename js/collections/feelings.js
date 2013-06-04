@@ -8,11 +8,10 @@ var elefeely = elefeely || {};
 
     initialize: function () {
       _.bindAll(this, 'overall');
-      // this.on('all', this.overall, this);
     },
 
     overall: function () {
-      // {1 => 0.3, 2 => 0.1, 3 => 0.2, 4 => 0.3, 5 => 0.1}
+      // {1 => 0.3, 2 => 0.1, 3 => 0.2, 4 => 0.3, 5 => 0.1}, key is score, value is percent
       var grouped,
           total = this.size();
 
@@ -27,14 +26,14 @@ var elefeely = elefeely || {};
     },
 
     timeOfDay: function () {
-      // {1 => 1-5, 2 => 1-5, ..} (key is hour, value is avg. feeling (1-5))
+      // {0 => 1-5, 1 => 1-5, ..} (key is hour, value is avg_feeling (1-5))
       return this.countBy(function (feeling) {
         return feeling.timeOfDay();
       })
     },
 
     dayOfWeek: function () {
-      // {'Mon' => 1-5, 'Tue' => 1-5, } (key is day, value is avg. feeling (1-5))
+      // {0 => 1-5, 1 => 1-5, ..} (key is day, value is avg_feeling (1-5))
       return this.countBy(function (feeling) {
         return feeling.dayOfWeek();
       })
@@ -42,7 +41,7 @@ var elefeely = elefeely || {};
   });
 
   elefeely.PersonalFeelings = elefeely.Feelings.extend({
-    url: '/me/feelings'
+    url: '/feelings/me'
   });
 
   elefeely.CollectiveFeelings = elefeely.Feelings.extend({
