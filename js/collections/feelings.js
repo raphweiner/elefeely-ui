@@ -13,7 +13,11 @@ var elefeely = elefeely || {};
     overall: function () {
       var grouped,
           total = this.size(),
-          categories = { '1' : 'Sad', '2' : 'Tired', '3' : 'Okay', '4' : 'Good', '5' : 'Awesome' };
+          categories = { '1' : 'Sad',
+                         '2' : 'Tired',
+                         '3' : 'Okay',
+                         '4' : 'Good',
+                         '5' : 'Awesome' };
 
       grouped = _.countBy(this.models, function(feeling) {
         return feeling.get('score');
@@ -53,7 +57,7 @@ var elefeely = elefeely || {};
       //   return memo;
       // }, {})
 
-      console.log(total_score_by_day);
+      // console.log(total_score_by_day);
       // {0 => 1-5, 1 => 1-5, ..} (key is day, value is avg_feeling (1-5))
 
       return _.reduce(count_by_day, function (memo, value, key) {
