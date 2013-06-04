@@ -4,7 +4,7 @@ var elefeely = elefeely || {};
 
   elefeely.CollectiveView = Backbone.View.extend({
 
-    template: Handlebars.compile($('#collective-template').html()),
+    template: Handlebars.compile($('#personal-collective-template').html()),
 
     events: {
       'click #day-of-week': 'graphDayOfWeek',
@@ -13,8 +13,7 @@ var elefeely = elefeely || {};
     },
 
     render: function () {
-      console.log("render collective");
-      this.$el.html(this.template());
+      this.$el.html(this.template({ view: 'Collective'}));
       this.graphOverall();
 
       return this;

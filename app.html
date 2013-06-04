@@ -74,12 +74,8 @@
     <button type="submit" id="delete-account" class="pull-right btn-small btn-danger">Delete Account</button>
   </script>
 
-  <script type="text/x-handlebars-template" id="personal-template">
-    Personal View
-  </script>
-
-  <script type="text/x-handlebars-template" id="collective-template">
-    <p class="lead">Collective</p>
+  <script type="text/x-handlebars-template" id="personal-collective-template">
+    <p class="lead">{{view}}</p>
 
     <div class="row">
       <div class="span6 offset2">
@@ -98,10 +94,6 @@
     </div>
 
     <canvas id='drawing' width="400" height="250"></canvas>
-  </script>
-
-  <script type="text/x-handlebars-template" id="feeling-template">
-    {{feeling.score}}
   </script>
 
   <script type="text/x-handlebars-template" id="login-signup-template">
@@ -171,7 +163,6 @@
   <script src="js/views/footer.js"></script>
   <script src="js/views/collective.js"></script>
   <script src="js/views/personal.js"></script>
-  <script src="js/views/feeling.js"></script>
   <script src="js/views/settings.js"></script>
   <script src="js/views/loginSignup.js"></script>
   <script src="js/graphUtility.js"></script>
