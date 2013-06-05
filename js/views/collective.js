@@ -78,6 +78,12 @@ var elefeely = elefeely || {};
       this.clearGraph();
       this.$('.toggle-pill').removeClass('active');
       this.$(id).addClass('active');
+
+      if (id === '#overall') {
+        this.$('#graphLegend').hide()
+      } else if (id === '#hour-of-day' || id === '#day-of-week' ) {
+        this.$('#graphLegend').fadeIn(1000)
+      };
     },
 
     clearGraph: function () {
