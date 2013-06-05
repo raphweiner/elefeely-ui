@@ -116,19 +116,15 @@ a:hover {
 }
 
 .marketing-image {
-  width: 220px;
-}
-
-.marketing-heading {
-  float: left;
-  margin-left: .7em;
+  width: 400px;
+  margin-top: 2em;
 }
 
 .marketing-copy {
-  width: 45%;
-  float: left;
-  text-align: left;
-  margin-left: 1em;
+  margin-top: 3em;
+  /*margin-bottom: 3em;*/
+  padding-left: 10em;
+  padding-right: 10em;
 }
 
 #drawing {
