@@ -120,13 +120,20 @@ a:hover {
 
 .marketing-image {
   width: 400px;
-  margin-top: 2em;
 }
 
 .marketing-copy {
-  margin-top: 3em;
+  margin-top: 2.5em;
+  font-family: 'Satisfy', cursive;
+  font-weight: bold;
+  font-size: 1.8em;
+}
+
+.marketing-sub-copy {
+  margin-top: 1em;
   padding-left: 10em;
   padding-right: 10em;
+  line-height: 1.5em;
 }
 
 #drawing {
