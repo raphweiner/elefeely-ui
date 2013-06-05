@@ -77,8 +77,12 @@ var elefeely = elefeely || {};
     },
 
     showSettings: function () {
-      var view = new elefeely.SettingsView();
-      this.showView(view);
+      if ( elefeely.currentUser ) {
+        var view = new elefeely.SettingsView();
+        this.showView(view);
+      } else {
+        Backbone.history.navigate('home', { trigger: true });
+      }
     },
 
     showView: function (view) {
