@@ -34,14 +34,7 @@ var elefeely = elefeely || {};
           dataType: 'json',
           data: { number: number },
           success: function (data) {
-            elefeely.currentUser.fetch({
-              success: function() {
-                window.location.reload(true);
-              },
-              error: function () {
-                window.location.reload(true);
-              }
-            });
+            window.location.reload(true);
           },
           error: function (response) {
             var errors = response.responseJSON;
@@ -61,18 +54,10 @@ var elefeely = elefeely || {};
         type: 'DELETE',
         dataType: 'json',
         success: function (data) {
-          elefeely.currentUser.fetch({
-            success: function() {
-              window.location.reload(true);
-            },
-            error: function () {
-              window.location.reload(true);
-            }
-          });
+          window.location.reload(true);
         },
         error: function (response) {
-          var errors = response.responseJSON;
-          console.log(['errors', errors]);
+          window.location.reload(true);
         }
       });
     }
