@@ -21,8 +21,9 @@ var myAjax = function(options) {
 
 Backbone.ajax = myAjax; // override to include currentUser's token
 
-elefeely.setCurrentUser = function(user) {
-  $.cookie('token', user.token);
+elefeely.setCurrentUser = function(data) {
+  $.cookie('token', data.token);
+  user = new elefeely.User({token: data.token})
   elefeely.currentUser = user;
   elefeely.trigger('auth:changed');
 };
@@ -39,11 +40,11 @@ elefeely.autoSignIn = function(done) {
   var accessToken = getAccessToken();
 
   if ( accessToken ) {
-    var currentUser = new elefeely.User({ token: accessToken });
-    currentUser.url = '/users/me';
-    currentUser.fetch({
+    var user = new elefeely.User({ token: accessToken });
+    user.url = '/users/me';
+    user.fetch({
       success: function() {
-        elefeely.setCurrentUser(currentUser);
+        elefeely.setCurrentUser(user);
         done();
       },
       error: function () {
