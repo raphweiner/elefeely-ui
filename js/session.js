@@ -23,7 +23,7 @@ Backbone.ajax = myAjax; // override to include currentUser's token
 
 elefeely.setCurrentUser = function(user) {
   $.cookie('token', user.token);
-  elefeely.currentUser = new elefeely.User(user);
+  elefeely.currentUser = user;
   elefeely.trigger('auth:changed');
 };
 

@@ -61,43 +61,55 @@
 
   <script type="text/x-handlebars-template" id="main-template">
     <p class="lead">Elefeely is the best way to chart your feelings</p>
+
     <div class="marketing row">
       <div class="span6 offset2">
         <img class="marketing-image pull-left" src="img/iphone.png" />
-          <h3 class="marketing-heading">Something</h3>
-          <p class="marketing-copy"> We will send you periodic texts throughout the day.  Just respond to them and we will give you a nice view of it. </p>
+        <h3 class="marketing-heading">Something</h3>
+        <p class="marketing-copy"> We will send you periodic texts throughout the day.  Just respond to them and we will give you a nice view of it. </p>
       </div>
     </div>
+
     <div class="marketing row">
-          <div class="span6 offset2">
-            <img class="marketing-image pull-left" src="img/iphone.png" />
-              <h3 class="marketing-heading">Something</h3>
-              <p class="marketing-copy"> We will send you periodic texts throughout the day.  Just respond to them and we will give you a nice view of it. </p>
-          </div>
-        </div><div class="marketing row">
       <div class="span6 offset2">
         <img class="marketing-image pull-left" src="img/iphone.png" />
-          <h3 class="marketing-heading">Something</h3>
-          <p class="marketing-copy"> We will send you periodic texts throughout the day.  Just respond to them and we will give you a nice view of it. </p>
+        <h3 class="marketing-heading">Something</h3>
+        <p class="marketing-copy"> We will send you periodic texts throughout the day.  Just respond to them and we will give you a nice view of it. </p>
+      </div>
+    </div>
+
+    <div class="marketing row">
+      <div class="span6 offset2">
+        <img class="marketing-image pull-left" src="img/iphone.png" />
+        <h3 class="marketing-heading">Something</h3>
+        <p class="marketing-copy"> We will send you periodic texts throughout the day.  Just respond to them and we will give you a nice view of it. </p>
       </div>
     </div>
   </script>
 
   <script type="text/x-handlebars-template" id="settings-template">
     <p class="lead">Text Messages</p>
-    <p>Where would you like to receive your texts?</p>
-    <br>
+
     {{#if phone}}
-      {{phone.number}}
+      <b>{{phone.number}}</b>
       <br>
-      {{#if phone.isVerified}}
-        <small class="text-success">Verified</small>
+
+      {{#if phone.verified}}
+        <small class="text-success">
+          verified
+        </small>
       {{else}}
-        <small class="text-warning">Pending verification</small>
+        <small class="text-warning">pending verification</small>
+        <br>
+        <small class="muted">(please respond to the text)</small>
       {{/if}}
+
       <br>
-      <button id="delete-phone" class="btn btn-small btn-danger">Remove Phone</button>
+      <button id="delete-phone" class="btn btn-small btn-warning">Remove Phone</button>
+
     {{else}}
+      <p>Where would you like to receive your texts?</p>
+      <br>
       <div class="control-group phone">
       <input type="text" id="number" class="span3" placeholder="ex. 4157451000">
       <br>

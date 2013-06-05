@@ -12,7 +12,7 @@ var elefeely = elefeely || {};
     },
 
     render: function () {
-      var phone = elefeely.currentUser.get('attributes').phone;
+      var phone = elefeely.currentUser.get('phone');
       this.$el.html(this.template({ phone: phone }));
 
       return this;
