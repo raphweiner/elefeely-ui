@@ -36,6 +36,8 @@ var elefeely = elefeely || {};
     },
 
     submitSignupLogin: function () {
+      event.preventDefault();
+
       var signupLogin = this.$("#submit-signup-login").text().toLowerCase(),
           email = this.$('#email').val(),
           password = this.$('#password').val(),
