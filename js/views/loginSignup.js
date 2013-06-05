@@ -42,6 +42,7 @@ var elefeely = elefeely || {};
           path = loginSignup === 'login' ? '/login' : '/users',
           verb = loginSignup === 'login' ? 'GET' : 'POST';
 
+      this.$("#submit-login-signup").addClass('disabled')
       this.validateInput(email, password);
 
       if (email && password) {
@@ -60,23 +61,25 @@ var elefeely = elefeely || {};
             console.log(errors);
 
             if (errors.email) {
-              this.$('.email').addClass('error');
-              this.$('.email-error').html(errors.email);
+              $('.email').addClass('error');
+              $('.email-error').html(errors.email);
             }
 
             if (errors.password) {
-              this.$('.password').addClass('error');
-              this.$('.password-error').html(errors.password);
+              $('.password').addClass('error');
+              $('.password-error').html(errors.password);
             }
 
             // temporary hack to display 'wrong email/password combination'
             if (errors.error) {
-              this.$('.password').addClass('error');
-              this.$('.password-error').html(errors.error);
+              $('.password').addClass('error');
+              $('.password-error').html(errors.error);
             }
           }
         });
       }
+
+      this.$("#submit-login-signup").removeClass('disabled')
     },
 
     validateInput: function (email, password) {

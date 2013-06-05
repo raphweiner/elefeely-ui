@@ -74,6 +74,7 @@ var elefeely = elefeely || {};
         dataType: 'json',
         data: { user: { email: email } },
         success: function (data) {
+          $('.email').removeClass('error');
           $('.email-error').html('<small class="text-success">updated!</small>');
         },
         error: function (response) {
