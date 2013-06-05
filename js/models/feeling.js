@@ -6,7 +6,7 @@ var elefeely = window.elefeely || {};
 
     urlRoot: '/feelings',
 
-    timeOfDay: function () {
+    hourOfDay: function () {
       var createdAt = this.createdAt();
       return createdAt.getHours();
     },

@@ -124,6 +124,7 @@ a:hover {
 }
 
 #drawing {
-  width: 400px;
+  width: 450px;
   height: 250px;
+  margin-left: 7em;
 }

@@ -8,7 +8,7 @@ var elefeely = elefeely || {};
 
     events: {
       'click #day-of-week': 'graphDayOfWeek',
-      'click #time-of-day': 'graphTimeOfDay',
+      'click #hour-of-day': 'graphHourOfDay',
       'click #overall': 'graphOverall'
     },
 
@@ -16,6 +16,7 @@ var elefeely = elefeely || {};
       var that = this;
 
       this.$el.html(this.template({ view: 'Collective'}));
+      this.$graph = this.$('#drawing');
 
       setTimeout(function() {
         that.graphOverall();
@@ -34,6 +35,7 @@ var elefeely = elefeely || {};
       new Morris.Donut({
         element: 'drawing',
         data: data,
+        formatter: function (y, data) { return parseInt(y * 100) + '%'}
       });
     },
 
@@ -43,51 +45,43 @@ var elefeely = elefeely || {};
       this.toggleActivePill('#day-of-week');
 
       data = this.collection.dayOfWeek();
-      console.log(data);
-      // data =  [
-      //     { day: 'Sunday', feeling: 4 },
-      //     { day: 'Monday', feeling: 3 },
-      //     { day: 'Tuesday', feeling: 2 },
-      //     { day: 'Wednesday', feeling: 3 },
-      //     { day: 'Thursday', feeling: 5 },
-      //     { day: 'Friday', feeling: 1 },
-      //     { day: 'Saturday', feeling: 2 }
-      //   ]
 
       new Morris.Bar({
         element: 'drawing',
         data: data,
         xkey: 'day',
         ykeys: ['feeling'],
+        ymax: 5,
         labels: ['Feeling']
       });
     },
 
-    graphTimeOfDay: function () {
-      var canvas = this.$("#drawing").get(0),
-          context = canvas.getContext("2d"),
-          data,
-          max;
+    graphHourOfDay: function () {
+      var data;
 
-      this.toggleActivePill('#time-of-day');
-      this.clearCanvas(canvas);
+      this.toggleActivePill('#hour-of-day');
 
-      data = this.collection.timeOfDay();
-      max = _.max(data);
+      data = this.collection.hourOfDay();
 
-      _.each(data, function (avg_score, time_of_day) {
-        elefeely.utils.bar(context, max, 24, time_of_day, avg_score);
+      new Morris.Line({
+        element: 'drawing',
+        data: data,
+        xkey: 'hour',
+        ykeys: ['feeling'],
+        labels: ['Avg. Feeling'],
+        ymax: 5,
+        parseTime: false
       });
     },
 
     toggleActivePill: function (id) {
+      this.clearGraph();
       this.$('.toggle-pill').removeClass('active');
       this.$(id).addClass('active');
     },
 
-    clearCanvas: function (canvas) {
-      canvas.width = canvas.width;
+    clearGraph: function (canvas) {
+      this.$graph.html('');
     }
-
   });
 })();

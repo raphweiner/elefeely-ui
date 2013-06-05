@@ -22,7 +22,6 @@ var elefeely = elefeely || {};
       grouped = _.countBy(this.models, function(feeling) {
         return feeling.get('score');
       });
-      // {1 => 0.3, 2 => 0.1, 3 => 0.2, 4 => 0.3, 5 => 0.1}, key is score, value is percent
 
       return _.reduce(grouped, function (memo, value, key) {
         memo.push({ label: categories[key.toString()], value: (value / total).toFixed(2) })
@@ -30,15 +29,30 @@ var elefeely = elefeely || {};
       }, []);
     },
 
-    timeOfDay: function () {
-      // {0 => 1-5, 1 => 1-5, ..} (key is hour, value is avg_feeling (1-5))
-      return this.countBy(function (feeling) {
-        return feeling.timeOfDay();
+    hourOfDay: function () {
+      var grouped;
+
+      grouped = this.groupBy(function (feeling) {
+        return feeling.hourOfDay();
       })
+
+      return _.reduce(grouped, function (memo, value, key) {
+
+        total_score = _.reduce(value, function (sum, feeling) {
+                        sum = sum + feeling.attributes.score;
+                        return sum
+                      }, 0);
+
+        memo.push({ hour: key.toString() + 'h',
+                    feeling: (total_score / value.length).toFixed(2) });
+
+        return memo
+      }, []);
     },
 
     dayOfWeek: function () {
-      var categories = { '0' : 'Sunday',
+      var grouped,
+          categories = { '0' : 'Sunday',
                          '1' : 'Monday',
                          '2' : 'Tuesday',
                          '3' : 'Wednesday',
@@ -46,23 +60,21 @@ var elefeely = elefeely || {};
                          '5' : 'Friday',
                          '6' : 'Saturday' };
 
-      count_by_day = this.countBy(function (feeling) {
+      grouped = this.groupBy(function (feeling) {
         return feeling.dayOfWeek();
-      })
+      });
 
-      console.log(count_by_day);
+      return _.reduce(grouped, function (memo, value, key) {
 
-      // total_score_by_day = this.reduce(function (memo, value, key) {
-      //   memo[]
-      //   return memo;
-      // }, {})
+        total_score = _.reduce(value, function (sum, feeling) {
+                        sum = sum + feeling.attributes.score;
+                        return sum
+                      }, 0);
 
-      // console.log(total_score_by_day);
-      // {0 => 1-5, 1 => 1-5, ..} (key is day, value is avg_feeling (1-5))
+        memo.push({ day: categories[key.toString()],
+                    feeling: (total_score / value.length).toFixed(2) });
 
-      return _.reduce(count_by_day, function (memo, value, key) {
-        memo.push({ day: categories[key.toString()], feeling: value })
-        return memo;
+        return memo
       }, []);
     }
   });
