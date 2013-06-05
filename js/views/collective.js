@@ -80,7 +80,7 @@ var elefeely = elefeely || {};
       this.$(id).addClass('active');
     },
 
-    clearGraph: function (canvas) {
+    clearGraph: function () {
       this.$graph.html('');
     }
   });

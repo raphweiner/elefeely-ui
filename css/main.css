@@ -128,3 +128,7 @@ a:hover {
   height: 250px;
   margin-left: 7em;
 }
+
+.no-data {
+  margin-top: 3em;
+}

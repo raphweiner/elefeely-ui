@@ -8,76 +8,92 @@ var elefeely = elefeely || {};
 
     events: {
       'click #day-of-week': 'graphDayOfWeek',
-      'click #time-of-day': 'graphTimeOfDay',
+      'click #hour-of-day': 'graphHourOfDay',
       'click #overall': 'graphOverall'
     },
 
     render: function () {
+      var that = this;
+
       this.$el.html(this.template({ view: 'Personal'}));
-      this.graphOverall();
+      this.$graph = this.$('#drawing');
+
+      setTimeout(function() {
+        that.graphOverall();
+      }, 0);
 
       return this;
     },
 
     graphOverall: function () {
-      var canvas = this.$("#drawing").get(0),
-          context = canvas.getContext("2d"),
-          data,
-          max;
+      var data;
 
       this.toggleActivePill('#overall');
-      this.clearCanvas(canvas);
 
       data = this.collection.overall();
-      max = _.max(data);
 
-      _.each(data, function (score_percent, score) {
-        elefeely.utils.bar(context, max, 5, score, score_percent);
+      new Morris.Donut({
+        element: 'drawing',
+        data: data,
+        formatter: function (y, data) { return parseInt(y * 100) + '%'}
       });
+
+      this.ifNoData(data);
     },
 
     graphDayOfWeek: function (e) {
-      var canvas = this.$("#drawing").get(0),
-          context = canvas.getContext("2d"),
-          data,
-          max;
+      var data;
 
       this.toggleActivePill('#day-of-week');
-      this.clearCanvas(canvas);
 
       data = this.collection.dayOfWeek();
-      max = _.max(data);
 
-      _.each(data, function (avg_score, day_of_week) {
-        elefeely.utils.bar(context, max, 7, day_of_week, avg_score);
+      new Morris.Bar({
+        element: 'drawing',
+        data: data,
+        xkey: 'day',
+        ykeys: ['feeling'],
+        ymax: 5,
+        labels: ['Feeling']
       });
+
+      this.ifNoData(data);
     },
 
-    graphTimeOfDay: function () {
-      var canvas = this.$("#drawing").get(0),
-          context = canvas.getContext("2d"),
-          data,
-          max;
+    graphHourOfDay: function () {
+      var data;
 
-      this.toggleActivePill('#time-of-day');
-      this.clearCanvas(canvas);
+      this.toggleActivePill('#hour-of-day');
 
-      data = this.collection.timeOfDay();
-      max = _.max(data);
+      data = this.collection.hourOfDay();
 
-      _.each(data, function (avg_score, time_of_day) {
-        elefeely.utils.bar(context, max, 24, time_of_day, avg_score);
+      new Morris.Line({
+        element: 'drawing',
+        data: data,
+        xkey: 'hour',
+        ykeys: ['feeling'],
+        labels: ['Avg. Feeling'],
+        ymax: 5,
+        parseTime: false
       });
+
+      this.ifNoData(data);
     },
 
     toggleActivePill: function (id) {
+      this.clearGraph();
       this.$('.toggle-pill').removeClass('active');
       this.$(id).addClass('active');
     },
 
-    clearCanvas: function (canvas) {
-      canvas.width = canvas.width;
-    }
+    clearGraph: function () {
+      this.$graph.html('');
+    },
 
+    ifNoData: function (data) {
+      if ( data.length === 0 ) {
+        this.$graph.html(Handlebars.compile($('#no-data-template').html()));
+      }
+    }
   });
 })();
