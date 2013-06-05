@@ -150,3 +150,11 @@ a:hover {
 .email-settings, .account-settings {
   margin-top: 2em;
 }
+
+#signup-or {
+  margin-right: 0.6em;
+}
+
+#or-learn-more {
+  margin-left: 0.6em;
+}
