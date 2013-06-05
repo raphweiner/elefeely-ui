@@ -141,6 +141,7 @@
     {{/if}}
 
     <p class="lead email-settings">Email</p>
+
     <div class="control-group email">
       <input type="text" id="email" class="span3" value={{email}}>
       <br>
@@ -150,7 +151,10 @@
     </div>
 
     <p class="lead account-settings">Account</p>
-    <button type="submit" id="delete-account" class="btn btn-small btn-danger">Delete Account</button>
+
+    <button type="submit" id="delete-account" class="btn btn-small btn-danger">
+      Delete Account
+    </button>
   </script>
 
   <script type="text/x-handlebars-template" id="personal-collective-template">
@@ -181,13 +185,25 @@
 
 
   <script type="text/x-handlebars-template" id="no-data-template">
+    <p class="lead">Personal Feelings</p>
+
     <p class='no-data'>
       Your feelings will appear here!
       <br><br>
-      To get started, add your phone to receive texts:
+      {{#if phone}}
+      Enter your 10-digit number to start sending us feelings:
       <br>
       <br>
-      <a href='#settings'><button class="btn btn-primary">Add Phone</button></a>
+      <form>
+        <div class="control-group phone">
+          <input type="text" id="number" class="span3" placeholder="ex. 4157450000">
+          <br>
+          <span class="help-inline phone-error"></span>
+          <br>
+          <button id="add-phone" type="submit" class="btn">Add</button>
+        </div>
+      </form>
+      {{/if}}
     </p>
   </script>
 

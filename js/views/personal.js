@@ -9,13 +9,18 @@ var elefeely = elefeely || {};
     events: {
       'click #day-of-week': 'graphDayOfWeek',
       'click #hour-of-day': 'graphHourOfDay',
-      'click #overall': 'graphOverall'
+      'click #overall': 'graphOverall',
+      'click #add-phone': 'addPhone'
     },
 
     render: function () {
       var that = this;
 
-      this.$el.html(this.template({ view: 'Personal', size: this.collection.size()}));
+      this.$el.html(this.template({ view: 'Personal',
+                                    size: this.collection.size(),
+                                    phone: elefeely.currentUser.get('phone')
+                                  }));
+
       this.$graph = this.$('#drawing');
 
       setTimeout(function() {
@@ -98,7 +103,37 @@ var elefeely = elefeely || {};
 
     ifNoData: function (data) {
       if ( data.length === 0 ) {
-        this.$graph.html(Handlebars.compile($('#no-data-template').html()));
+        this.$el.html(Handlebars.compile($('#no-data-template').html()));
+      }
+    },
+
+    addPhone: function () {
+      var number = this.$('#number').val();
+
+      if ( number.length !== 10 ) {
+        this.$('.phone').addClass('error');
+        this.$('.phone-error').html('Please enter a 10 digit number');
+      } else {
+        this.$('.phone').removeClass('error');
+        this.$('.phone-error').html('');
+
+        $.ajax({
+          url: elefeely.url + '/phones' + '?token=' + $.cookie('token'),
+          type: 'POST',
+          dataType: 'json',
+          data: { number: number },
+          success: function (data) {
+            window.location.reload(true);
+          },
+          error: function (response) {
+            var errors = response.responseJSON;
+
+            if (errors.number) {
+              $('.phone').addClass('error');
+              $('.phone-error').html(errors.number);
+            }
+          }
+        });
       }
     }
   });
