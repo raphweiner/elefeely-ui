@@ -132,3 +132,7 @@ a:hover {
 .no-data {
   margin-top: 3em;
 }
+
+.email-settings, .account-settings {
+  margin-top: 2em;
+}

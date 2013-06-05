@@ -8,12 +8,14 @@ var elefeely = elefeely || {};
 
     events: {
       'click #delete-phone': 'deletePhone',
-      'click #add-phone': 'addPhone'
+      'click #add-phone': 'addPhone',
+      'click #update-email': 'updateEmail'
     },
 
     render: function () {
-      var phone = elefeely.currentUser.get('phone');
-      this.$el.html(this.template({ phone: phone }));
+      var phone = elefeely.currentUser.get('phone'),
+          email = elefeely.currentUser.get('email');
+      this.$el.html(this.template({ phone: phone, email: email }));
 
       return this;
     },
@@ -58,6 +60,29 @@ var elefeely = elefeely || {};
         },
         error: function (response) {
           window.location.reload(true);
+        }
+      });
+    },
+
+    updateEmail: function () {
+      var email = this.$('#email').val();
+      $('.email-error').html('');
+
+      $.ajax({
+        url: elefeely.url + '/users' + '?token=' + $.cookie('token'),
+        type: 'PUT',
+        dataType: 'json',
+        data: { user: { email: email } },
+        success: function (data) {
+          $('.email-error').html('<small class="text-success">updated!</small>');
+        },
+        error: function (response) {
+          var errors = response.responseJSON;
+
+          if (errors.email) {
+            $('.email').addClass('error');
+            $('.email-error').html(errors.email);
+          }
         }
       });
     }
