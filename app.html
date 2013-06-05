@@ -135,7 +135,7 @@
         <br>
         <span class="help-inline phone-error"></span>
         <br>
-        <button id="add-phone" class="btn">Add</button>
+        <button id="add-phone" type="submit" class="btn">Add</button>
       </div>
       <p class="muted">NOTE: We will send a confirmation <br>text to verify your number</p>
     {{/if}}
@@ -173,6 +173,10 @@
     </div>
 
     <div id="drawing"></div>
+
+    <div class="total-feelings">
+      {{size}} {{view}} Feelings
+    </div>
   </script>
 
 
@@ -201,38 +205,40 @@
       </div>
     </div>
 
-    <div class="control-group email">
-      <input type="text" class="span3" id="email" placeholder="email">
-      <br>
-      <span class="help-inline email-error"></span>
-    </div>
-
-    <div class="control-group password">
-      <input type="password" class="span3" id="password" placeholder="password">
-      <br>
-      <span class="help-inline password-error"></span>
-    </div>
-
-    <button class="btn btn-primary" id="submit-signup-login">Signup</button>
-    <br><br>
-    <div id="forgot-password">
-    <a href="#forgotten-password-modal" data-toggle="modal">Forgot password?</a>
-    </div>
-
-    <div id="forgotten-password-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-        <h3 id="myModalLabel">Reset Password</h3>
-      </div>
-      <div class="modal-body">
-        <input type="text" id="password-reset-email" placeholder="email">
+    <form>
+      <div class="control-group email">
+        <input type="text" class="span3" id="email" placeholder="email">
         <br>
-        <small>NOTE: This feature does not work yet :(</small>
+        <span class="help-inline email-error"></span>
       </div>
-      <div class="modal-footer">
-        <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-        <button class="btn btn-primary">Reset Password</button>
+
+      <div class="control-group password">
+        <input type="password" class="span3" id="password" placeholder="password">
+        <br>
+        <span class="help-inline password-error"></span>
       </div>
+
+      <button class="btn btn-primary" id="submit-signup-login">Signup</button>
+      <br><br>
+      <div id="forgot-password">
+      <a href="#forgotten-password-modal" data-toggle="modal">Forgot password?</a>
+      </div>
+
+      <div id="forgotten-password-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+          <h3 id="myModalLabel">Reset Password</h3>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="password-reset-email" placeholder="email">
+          <br>
+          <small>NOTE: This feature does not work yet :(</small>
+        </div>
+        <div class="modal-footer">
+          <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+          <button class="btn btn-primary">Reset Password</button>
+        </div>
+      </form>
     </div>
   </script>
 

@@ -15,7 +15,7 @@ var elefeely = elefeely || {};
     render: function () {
       var that = this;
 
-      this.$el.html(this.template({ view: 'Personal'}));
+      this.$el.html(this.template({ view: 'Personal', size: this.collection.size()}));
       this.$graph = this.$('#drawing');
 
       setTimeout(function() {

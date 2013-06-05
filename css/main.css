@@ -51,7 +51,7 @@ header {
 
 #subnav {
   color: #aaa;
-  font-size: 1.3em;
+  font-size: 1.5em;
 }
 
 #login {
@@ -164,4 +164,9 @@ a:hover {
   position: absolute;
   margin-top: 5em;
   margin-left: 15em;
+}
+
+.total-feelings {
+  color: #888;
+  margin-top: 2em;
 }
