@@ -5,9 +5,9 @@ var elefeely = elefeely || {};
   elefeely.AppView = Backbone.View.extend({
 
     initialize: function () {
-      _.bindAll(this, 'render', 'loadHeader');
+      _.bindAll(this, 'render', 'showHeader');
 
-      elefeely.on('auth:changed', this.loadHeader);
+      elefeely.on('auth:changed', this.showHeader);
 
       this.render();
     },
@@ -15,26 +15,26 @@ var elefeely = elefeely || {};
     render: function () {
       this.$main = $('#main');
 
-      this.loadHeader();
-      this.loadMain();
-      this.loadFooter();
+      this.showHeader();
+      this.showHome();
+      this.showFooter();
 
       return this;
     },
 
-    loadHeader: function () {
+    showHeader: function () {
       var view = new elefeely.HeaderView();
       $('#header').html(view.render().el);
     },
 
-    loadMain: function () {
-      var view = new elefeely.MainView();
-      this.showView(view);
-    },
-
-    loadFooter: function () {
+    showFooter: function () {
       var view = new elefeely.FooterView();
       $('#footer').html(view.render().el);
+    },
+
+    showHome: function () {
+      var view = new elefeely.HomeView();
+      this.showView(view);
     },
 
     showPersonal: function() {

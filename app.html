@@ -28,7 +28,7 @@
 
   <script type="text/x-handlebars-template" id="header-template">
     <header>
-    <span id="logo">Elefeely</span>
+    <span id="logo"><a href='#home'>Elefeely</a></span>
     {{#if isSignedIn}}
       <div class="dropdown pull-right">
         <a class="dropdown-toggle" data-toggle="dropdown">
@@ -60,7 +60,7 @@
     Crafted by <a href="http://twitter.com/raphweiner" target="_blank">Raphael Weiner</a>
   </script>
 
-  <script type="text/x-handlebars-template" id="main-template">
+  <script type="text/x-handlebars-template" id="home-template">
     <p class="lead">Elefeely is the best way to chart your feelings</p>
 
     <div class="marketing row">
@@ -234,7 +234,7 @@
   <script src="js/collections/feelings.js"></script>
   <script src="js/views/app.js"></script>
   <script src="js/views/header.js"></script>
-  <script src="js/views/main.js"></script>
+  <script src="js/views/home.js"></script>
   <script src="js/views/footer.js"></script>
   <script src="js/views/collective.js"></script>
   <script src="js/views/personal.js"></script>

@@ -22,6 +22,14 @@ header {
   text-shadow: -2px -1px #444;
 }
 
+#logo a {
+  color: #fff;
+}
+
+#logo a:hover {
+  text-shadow: -2px -1px #049CDB;
+}
+
 #main {
   padding: 50px;
   background: transparent url("../img/gplaypattern.png");
