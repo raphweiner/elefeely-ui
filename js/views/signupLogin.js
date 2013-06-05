@@ -2,14 +2,14 @@ var elefeely = elefeely || {};
 
 (function () {
 
-  elefeely.LoginSignupView = Backbone.View.extend({
+  elefeely.SignupLoginView = Backbone.View.extend({
 
     events: {
-      'click #submit-login-signup': 'submitLoginSignup',
+      'click #submit-signup-login': 'submitSignupLogin',
       'click .toggle-pill': 'togglePill'
     },
 
-    template: Handlebars.compile($('#login-signup-template').html()),
+    template: Handlebars.compile($('#signup-login-template').html()),
 
     render: function () {
       this.$el.html(this.template());
@@ -22,7 +22,7 @@ var elefeely = elefeely || {};
 
       if (!$(e.currentTarget).hasClass('active')) {
         this.$(".toggle-pill").toggleClass("active");
-        this.$("#submit-login-signup").text(target);
+        this.$("#submit-signup-login").text(target);
 
         this.clearError('.email');
         this.clearError('.password');
@@ -35,14 +35,14 @@ var elefeely = elefeely || {};
       }
     },
 
-    submitLoginSignup: function () {
-      var loginSignup = this.$("#submit-login-signup").text().toLowerCase(),
+    submitSignupLogin: function () {
+      var signupLogin = this.$("#submit-signup-login").text().toLowerCase(),
           email = this.$('#email').val(),
           password = this.$('#password').val(),
-          path = loginSignup === 'login' ? '/login' : '/users',
-          verb = loginSignup === 'login' ? 'GET' : 'POST';
+          path = signupLogin === 'login' ? '/login' : '/users',
+          verb = signupLogin === 'login' ? 'GET' : 'POST';
 
-      this.$("#submit-login-signup").addClass('disabled')
+      this.$("#submit-signup-login").addClass('disabled')
       this.validateInput(email, password);
 
       if (email && password) {
@@ -79,7 +79,7 @@ var elefeely = elefeely || {};
         });
       }
 
-      this.$("#submit-login-signup").removeClass('disabled')
+      this.$("#submit-signup-login").removeClass('disabled')
     },
 
     validateInput: function (email, password) {

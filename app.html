@@ -48,7 +48,7 @@
         {{#if isSignedIn}}
         <a href="#personal">personal</a>
         {{else}}
-        <a href="#login">login / signup</a>
+        <a href="#signup">signup / login</a>
         {{/if}}
         |
         <a href="#collective">collective</a>
@@ -69,7 +69,7 @@
     <br>
     <p class="lead">Elefeely remembers for you.</b></p>
 
-    <a href='#login'><button class="btn btn-primary">Sign up</button></a> or <a href='#learn-more'><button class="btn btn-info">Learn more</button></a>
+    <a href='#signup'><button class="btn btn-primary">Sign up</button></a> or <a href='#learn-more'><button class="btn btn-info">Learn more</button></a>
 
 
     <div id="learn-more" class="marketing">
@@ -103,7 +103,7 @@
     </div>
     <br>
     <p class="lead">Ready to start feeling?</p>
-    <a href='#login'><button class="btn btn-primary">Sign up</button></a>
+    <a href='#signup'><button class="btn btn-primary">Sign up</button></a>
   </script>
 
   <script type="text/x-handlebars-template" id="settings-template">
@@ -183,15 +183,15 @@
     </p>
   </script>
 
-  <script type="text/x-handlebars-template" id="login-signup-template">
+  <script type="text/x-handlebars-template" id="signup-login-template">
     <div class="row">
       <div class="span4 offset4">
         <ul class="nav nav-pills text-center">
           <li class="toggle-pill active" id="login-pill">
-            <a href="#login">Login</a>
+            <a href="#signup">Signup</a>
           </li>
           <li class="toggle-pill" id="signup-pill">
-            <a href="#login">Signup</a>
+            <a href="#signup">Login</a>
           </li>
         </ul>
       </div>
@@ -209,7 +209,7 @@
       <span class="help-inline password-error"></span>
     </div>
 
-    <button class="btn btn-primary" id="submit-login-signup">Login</button>
+    <button class="btn btn-primary" id="submit-signup-login">Signup</button>
     <br><br>
     <div id="forgot-password">
     <a href="#forgotten-password-modal" data-toggle="modal">Forgot password?</a>
@@ -222,6 +222,8 @@
       </div>
       <div class="modal-body">
         <input type="text" id="password-reset-email" placeholder="email">
+        <br>
+        <small>NOTE: This feature does not work yet :(</small>
       </div>
       <div class="modal-footer">
         <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
@@ -257,7 +259,7 @@
   <script src="js/views/collective.js"></script>
   <script src="js/views/personal.js"></script>
   <script src="js/views/settings.js"></script>
-  <script src="js/views/loginSignup.js"></script>
+  <script src="js/views/signupLogin.js"></script>
   <script src="js/graphUtility.js"></script>
   <script src="js/app.js"></script>
 </body>

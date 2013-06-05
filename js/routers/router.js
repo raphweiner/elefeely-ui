@@ -9,7 +9,7 @@ var elefeely = elefeely || {};
       "personal":   "personal",
       "collective": "collective",
       "logout":     "logout",
-      "login":      "login",
+      "signup":     "signup",
       "settings":   "settings"
     },
 
@@ -29,8 +29,8 @@ var elefeely = elefeely || {};
       elefeely.signOut();
     },
 
-    login: function () {
-      elefeely.appView.showLogin();
+    signup: function () {
+      elefeely.appView.showSignupLogin();
     },
 
     settings: function () {

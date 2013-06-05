@@ -67,9 +67,13 @@ var elefeely = elefeely || {};
       });
     },
 
-    showLogin: function () {
-      var view = new elefeely.LoginSignupView();
-      this.showView(view);
+    showSignupLogin: function () {
+      if ( !elefeely.currentUser ) {
+        var view = new elefeely.SignupLoginView();
+        this.showView(view);
+      } else {
+        Backbone.history.navigate('personal', { trigger: true });
+      }
     },
 
     showSettings: function () {
