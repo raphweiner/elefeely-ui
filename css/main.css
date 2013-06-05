@@ -55,7 +55,7 @@ header {
 }
 
 #login {
-  position: absolute right;
+  position: absolute;
   top: 300px;
   right: -500px;
   color: white;
