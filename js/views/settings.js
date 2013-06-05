@@ -9,7 +9,8 @@ var elefeely = elefeely || {};
     events: {
       'click #delete-phone': 'deletePhone',
       'click #add-phone': 'addPhone',
-      'click #update-email': 'updateEmail'
+      'click #update-email': 'updateEmail',
+      'click #delete-account': 'deleteAccount'
     },
 
     render: function () {
@@ -86,7 +87,26 @@ var elefeely = elefeely || {};
           }
         }
       });
-    }
+    },
+
+
+    deleteAccount: function () {
+      var remove = confirm('Are you sure? This will erase all your data');
+
+      if ( remove ) {
+        $.ajax({
+          url: elefeely.url + '/users' + '?token=' + $.cookie('token'),
+          type: 'DELETE',
+          dataType: 'json',
+          success: function (data) {
+            elefeely.signOut();
+          },
+          error: function (response) {
+            window.location.reload(true);
+          }
+        });
+      }
+    },
 
   });
 })();
