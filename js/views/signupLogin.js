@@ -38,19 +38,19 @@ var elefeely = elefeely || {};
     submitSignupLogin: function () {
       event.preventDefault();
 
-      var signupLogin = this.$("#submit-signup-login").text().toLowerCase(),
+      var intent = this.$("#submit-signup-login").text().toLowerCase(),
           email = this.$('#email').val(),
           password = this.$('#password').val(),
-          path = signupLogin === 'login' ? '/login' : '/users',
-          verb = signupLogin === 'login' ? 'GET' : 'POST';
+          requestUrl = this.requestUrl(intent),
+          requestVerb = this.requestVerb(intent);
 
-      this.$("#submit-signup-login").addClass('disabled')
+      this.$("#submit-signup-login").addClass('disabled');
       this.validateInput(email, password);
 
       if (email && password) {
         $.ajax({
-          url: elefeely.url + path,
-          type: verb,
+          url: requestUrl,
+          type: requestVerb,
           dataType: 'json',
           data: { user: { email: email, password: password } },
           success: function (data) {
@@ -106,6 +106,22 @@ var elefeely = elefeely || {};
     clearError: function (field) {
       this.$(field).removeClass('error');
       this.$(field + '-error').html('');
+    },
+
+    requestUrl: function (intent) {
+      if ( intent === 'login' ) {
+        return elefeely.apiDirectory.login_url
+      } else if (intent === 'signup' ) {
+        return elefeely.apiDirectory.users_url
+      }
+    },
+
+    requestVerb: function (intent) {
+      if ( intent === 'login' ) {
+        return 'GET'
+      } else if (intent === 'signup' ) {
+        return 'POST'
+      }
     }
   });
 })();

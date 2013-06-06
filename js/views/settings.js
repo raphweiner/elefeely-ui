@@ -16,6 +16,7 @@ var elefeely = elefeely || {};
     render: function () {
       var phone = elefeely.currentUser.get('phone'),
           email = elefeely.currentUser.get('email');
+
       this.$el.html(this.template({ phone: phone, email: email }));
 
       return this;
@@ -32,7 +33,7 @@ var elefeely = elefeely || {};
         this.$('.phone-error').html('');
 
         $.ajax({
-          url: elefeely.url + '/phones' + '?token=' + $.cookie('token'),
+          url: elefeely.apiDirectory.phones_url + '?token=' + $.cookie('token'),
           type: 'POST',
           dataType: 'json',
           data: { number: number },
@@ -53,7 +54,7 @@ var elefeely = elefeely || {};
 
     deletePhone: function () {
       $.ajax({
-        url: elefeely.url + '/phones/me' + '?token=' + $.cookie('token'),
+        url: elefeely.apiDirectory.current_user_phone_url + '?token=' + $.cookie('token'),
         type: 'DELETE',
         dataType: 'json',
         success: function (data) {
@@ -70,7 +71,7 @@ var elefeely = elefeely || {};
       $('.email-error').html('');
 
       $.ajax({
-        url: elefeely.url + '/users' + '?token=' + $.cookie('token'),
+        url: elefeely.apiDirectory.users_url + '?token=' + $.cookie('token'),
         type: 'PUT',
         dataType: 'json',
         data: { user: { email: email } },
@@ -89,13 +90,12 @@ var elefeely = elefeely || {};
       });
     },
 
-
     deleteAccount: function () {
       var remove = confirm('Are you sure? This will erase all your data');
 
       if ( remove ) {
         $.ajax({
-          url: elefeely.url + '/users' + '?token=' + $.cookie('token'),
+          url: elefeely.apiDirectory.users_url + '?token=' + $.cookie('token'),
           type: 'DELETE',
           dataType: 'json',
           success: function (data) {

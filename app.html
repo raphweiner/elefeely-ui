@@ -58,6 +58,9 @@
 
   <script type="text/x-handlebars-template" id="footer-template">
     Crafted by <a href="http://twitter.com/raphweiner" target="_blank">Raphael Weiner</a>
+    <br>
+    <br>
+    Contributions of the <a href="http://github.com/raphweiner/elefeely-api" target="_blank">code</a> variant welcome
   </script>
 
   <script type="text/x-handlebars-template" id="home-template">
@@ -190,20 +193,10 @@
     <p class='no-data'>
       Your feelings will appear here!
       <br><br>
-      {{#if phone}}
-      Enter your 10-digit number to start sending us feelings:
+      To get started, head over to your settings and setup your phone:
       <br>
       <br>
-      <form>
-        <div class="control-group phone">
-          <input type="text" id="number" class="span3" placeholder="ex. 4157450000">
-          <br>
-          <span class="help-inline phone-error"></span>
-          <br>
-          <button id="add-phone" type="submit" class="btn">Add</button>
-        </div>
-      </form>
-      {{/if}}
+      <a href='#settings'><button class="btn btn-info">Settings</button></a>
     </p>
   </script>
 
@@ -269,9 +262,10 @@
   <script src="js/lib/raphael-min.js"></script>
   <script src="js/lib/morris.min.js"></script>
   <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/md5.js"></script>
-
+  <script src="http://js.pusher.com/2.0/pusher.min.js" type="text/javascript"></script>
   <!-- Custom -->
   <script src="js/session.js"></script>
+  <script src="js/app.js"></script>
   <script src="js/routers/router.js"></script>
   <script src="js/models/feeling.js"></script>
   <script src="js/models/user.js"></script>
@@ -284,7 +278,5 @@
   <script src="js/views/personal.js"></script>
   <script src="js/views/settings.js"></script>
   <script src="js/views/signupLogin.js"></script>
-  <script src="js/graphUtility.js"></script>
-  <script src="js/app.js"></script>
 </body>
 </html>

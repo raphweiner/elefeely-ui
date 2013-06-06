@@ -9,16 +9,19 @@ var elefeely = elefeely || {};
     events: {
       'click #day-of-week': 'graphDayOfWeek',
       'click #hour-of-day': 'graphHourOfDay',
-      'click #overall': 'graphOverall',
-      'click #add-phone': 'addPhone'
+      'click #overall': 'graphOverall'
+    },
+
+    initialize: function () {
+      _.bindAll(this, "render");
+      this.collection.bind('change', this.render);
     },
 
     render: function () {
       var that = this;
 
       this.$el.html(this.template({ view: 'Personal',
-                                    size: this.collection.size(),
-                                    phone: elefeely.currentUser.get('phone')
+                                    size: this.collection.size()
                                   }));
 
       this.$graph = this.$('#drawing');
@@ -31,7 +34,16 @@ var elefeely = elefeely || {};
     },
 
     graphOverall: function () {
-      var data;
+      var data,
+          that = this;
+
+      var pusher = new Pusher('e77c412e7c11274b627a');
+      var channel = pusher.subscribe('feelings');
+      channel.bind('new_feeling', function(data) {
+        that.collection.add(data);
+        that.render();
+        console.log(data);
+      });
 
       this.toggleActivePill('#overall');
 
@@ -105,36 +117,7 @@ var elefeely = elefeely || {};
       if ( data.length === 0 ) {
         this.$el.html(Handlebars.compile($('#no-data-template').html()));
       }
-    },
-
-    addPhone: function () {
-      var number = this.$('#number').val();
-
-      if ( number.length !== 10 ) {
-        this.$('.phone').addClass('error');
-        this.$('.phone-error').html('Please enter a 10 digit number');
-      } else {
-        this.$('.phone').removeClass('error');
-        this.$('.phone-error').html('');
-
-        $.ajax({
-          url: elefeely.url + '/phones' + '?token=' + $.cookie('token'),
-          type: 'POST',
-          dataType: 'json',
-          data: { number: number },
-          success: function (data) {
-            window.location.reload(true);
-          },
-          error: function (response) {
-            var errors = response.responseJSON;
-
-            if (errors.number) {
-              $('.phone').addClass('error');
-              $('.phone-error').html(errors.number);
-            }
-          }
-        });
-      }
     }
+
   });
 })();

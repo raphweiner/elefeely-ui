@@ -2,6 +2,15 @@ var elefeely = window.elefeely || {};
 
 elefeely.url = 'http://elefeely-api.herokuapp.com';
 
+$.ajax({
+  async: false,
+  type: 'GET',
+  url: elefeely.url,
+  success: function(data) {
+    elefeely.apiDirectory = data;
+  }
+});
+
 var getAccessToken = function() {
   return $.cookie('token');
 };

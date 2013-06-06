@@ -3,8 +3,7 @@ var elefeely = window.elefeely || {};
 (function () {
 
   elefeely.Feeling = Backbone.Model.extend({
-
-    urlRoot: '/feelings',
+    url: elefeely.apiDirectory.feelings_url.replace(elefeely.url, ''),
 
     hourOfDay: function () {
       var createdAt = this.createdAt();

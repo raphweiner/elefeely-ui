@@ -80,11 +80,11 @@ var elefeely = elefeely || {};
   });
 
   elefeely.PersonalFeelings = elefeely.Feelings.extend({
-    url: '/feelings/me'
+    url: elefeely.apiDirectory.current_user_feelings_url.replace(elefeely.url, '')
   });
 
   elefeely.CollectiveFeelings = elefeely.Feelings.extend({
-    url: '/feelings'
+    url: elefeely.apiDirectory.feelings_url.replace(elefeely.url, '')
   });
 
 })();
