@@ -198,3 +198,7 @@ a:hover {
 #learn-more {
   margin-top: 5em;
 }
+
+#delete-phone:hover, #delete-account:hover {
+  cursor: pointer;
+}

@@ -57,17 +57,21 @@ var elefeely = elefeely || {};
     deletePhone: function (evt) {
       evt.preventDefault();
 
-      $.ajax({
-        url: elefeely.apiDirectory.current_user_phone_url + '?token=' + $.cookie('token'),
-        type: 'DELETE',
-        dataType: 'json',
-        success: function (data) {
-          window.location.reload(true);
-        },
-        error: function (response) {
-          window.location.reload(true);
-        }
-      });
+      var remove = confirm('Are you sure?');
+
+      if ( remove ) {
+        $.ajax({
+          url: elefeely.apiDirectory.current_user_phone_url + '?token=' + $.cookie('token'),
+          type: 'DELETE',
+          dataType: 'json',
+          success: function (data) {
+            window.location.reload(true);
+          },
+          error: function (response) {
+            window.location.reload(true);
+          }
+        });
+      }
     },
 
     updateEmail: function (evt) {

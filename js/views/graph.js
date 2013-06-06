@@ -33,7 +33,13 @@ var elefeely = elefeely || {};
     },
 
     render: function () {
-      this.$el.html(this.template({ view: this.viewTitle, size: this.collection.size()}));
+      var diff = (Date.now() - Date.parse(this.collection.last().get('created_at'))),
+          updated = parseInt(diff / 60000);
+
+      this.$el.html(this.template({ view: this.viewTitle,
+                                    size: this.collection.size(),
+                                    updated: updated }));
+
       this.$graph = this.$('#drawing');
 
       setTimeout(function () {
