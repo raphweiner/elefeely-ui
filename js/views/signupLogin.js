@@ -54,7 +54,11 @@ var elefeely = elefeely || {};
           data: { user: { email: email, password: password } },
           success: function (data) {
             elefeely.setCurrentUser(data);
-            Backbone.history.navigate('personal', { trigger: true });
+            if ( intent === 'signup' ) {
+              Backbone.history.navigate('settings', { trigger: true });
+            } else {
+              Backbone.history.navigate('personal', { trigger: true });
+            }
           },
           error: function (response) {
             var errors = response.responseJSON;
