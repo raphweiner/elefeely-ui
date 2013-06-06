@@ -43,7 +43,7 @@ var elefeely = elefeely || {};
                         return sum
                       }, 0);
 
-        memo.push({ hour: key.toString() + 'h',
+        memo.push({ hour: key.toString() + ':00',
                     feeling: (total_score / value.length).toFixed(2) });
 
         return memo
