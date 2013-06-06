@@ -9,6 +9,20 @@ var elefeely = elefeely || {};
 
       elefeely.on('auth:changed', this.showHeader);
 
+      this.collectiveFeelings = new elefeely.CollectiveFeelings;
+      this.personalFeelings = new elefeely.PersonalFeelings;
+
+      var channel = elefeely.pusher.subscribe('feelings');
+
+      channel.bind('new_feeling', function(data) {
+        this.collectiveFeelings.add(data);
+        console.log(data)
+        if (elefeely.currentUser && data.user_id === elefeely.currentUser.id) {
+          console.log(data)
+          this.personalFeelings.add(data);
+        }
+      }.bind(this));
+
       this.render();
     },
 
@@ -37,31 +51,23 @@ var elefeely = elefeely || {};
       this.showView(view);
     },
 
-    showPersonal: function() {
-      // this.$main.html <- load spinner in here
-      var feelings = new elefeely.PersonalFeelings;
-      feelings.fetch({
-        success: function() {
-          var view = new elefeely.PersonalView({ collection: feelings });
-          this.showView(view);
-        }.bind(this),
-        error: function () {
-          var view = new elefeely.PersonalView();
-          this.showView(view);
-        }.bind(this)
-      });
+    showPersonal: function () {
+      this.showGraphView('Personal', this.personalFeelings);
     },
 
     showCollective: function () {
-      // this.$main.html <- load spinner in here
-      var feelings = new elefeely.CollectiveFeelings;
-      feelings.fetch({
+      this.showGraphView('Collective', this.collectiveFeelings);
+    },
+
+    showGraphView: function(viewTitle, collection) {
+      collection.fetch({
         success: function() {
-          var view = new elefeely.CollectiveView({ collection: feelings });
+          var view = new elefeely.GraphView({ collection: collection,
+                                              viewTitle: viewTitle });
           this.showView(view);
         }.bind(this),
         error: function () {
-          var view = new elefeely.CollectiveView();
+          var view = new elefeely.GraphView();
           this.showView(view);
         }.bind(this)
       });

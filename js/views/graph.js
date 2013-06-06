@@ -2,9 +2,9 @@ var elefeely = elefeely || {};
 
 (function () {
 
-  elefeely.PersonalView = Backbone.View.extend({
+  elefeely.GraphView = Backbone.View.extend({
 
-    template: Handlebars.compile($('#personal-collective-template').html()),
+    template: Handlebars.compile($('#graph-template').html()),
 
     events: {
       'click #day-of-week': 'graphDayOfWeek',
@@ -12,41 +12,41 @@ var elefeely = elefeely || {};
       'click #overall': 'graphOverall'
     },
 
-    initialize: function () {
-      _.bindAll(this, "render");
-      this.collection.bind('change', this.render);
+    initialize: function (options) {
+      this.viewTitle = options.viewTitle;
+      _.bindAll(this, 'render', 'showActiveTab');
+
+      this.listenTo(this.collection, 'add', this.render);
+    },
+
+    showActiveTab: function () {
+      switch(this.currentView) {
+        case '#day-of-week':
+          this.graphDayOfWeek();
+          break;
+        case '#hour-of-day':
+          this.graphHourOfDay();
+          break;
+        default:
+          this.graphOverall();
+      }
     },
 
     render: function () {
-      var that = this;
-
-      this.$el.html(this.template({ view: 'Personal',
-                                    size: this.collection.size()
-                                  }));
-
+      this.$el.html(this.template({ view: this.viewTitle, size: this.collection.size()}));
       this.$graph = this.$('#drawing');
 
-      setTimeout(function() {
-        that.graphOverall();
-      }, 0);
+      setTimeout(function () {
+        this.showActiveTab();
+      }.bind(this), 0);
 
       return this;
     },
 
     graphOverall: function () {
-      var data,
-          that = this;
+      var data;
 
-      var pusher = new Pusher('e77c412e7c11274b627a');
-      var channel = pusher.subscribe('feelings');
-      channel.bind('new_feeling', function(data) {
-        that.collection.add(data);
-        that.render();
-        console.log(data);
-      });
-
-      this.toggleActivePill('#overall');
-
+      this.showTab('#overall');
       data = this.collection.overall();
 
       new Morris.Donut({
@@ -54,15 +54,17 @@ var elefeely = elefeely || {};
         data: data,
         formatter: function (y, data) { return parseInt(y * 100) + '%'}
       });
+    },
 
-      this.ifNoData(data);
+    showTab: function (tab) {
+      this.currentView = tab;
+      this.toggleActivePill(tab);
     },
 
     graphDayOfWeek: function (e) {
       var data;
 
-      this.toggleActivePill('#day-of-week');
-
+      this.showTab('#day-of-week');
       data = this.collection.dayOfWeek();
 
       new Morris.Bar({
@@ -73,15 +75,12 @@ var elefeely = elefeely || {};
         ymax: 5,
         labels: ['Feeling']
       });
-
-      this.ifNoData(data);
     },
 
     graphHourOfDay: function () {
       var data;
 
-      this.toggleActivePill('#hour-of-day');
-
+      this.showTab('#hour-of-day');
       data = this.collection.hourOfDay();
 
       new Morris.Line({
@@ -93,8 +92,6 @@ var elefeely = elefeely || {};
         ymax: 5,
         parseTime: false
       });
-
-      this.ifNoData(data);
     },
 
     toggleActivePill: function (id) {
@@ -111,13 +108,6 @@ var elefeely = elefeely || {};
 
     clearGraph: function () {
       this.$graph.html('');
-    },
-
-    ifNoData: function (data) {
-      if ( data.length === 0 ) {
-        this.$el.html(Handlebars.compile($('#no-data-template').html()));
-      }
     }
-
   });
 })();
