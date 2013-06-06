@@ -77,7 +77,7 @@ var elefeely = elefeely || {};
       $('.email-error').html('');
 
       $.ajax({
-        url: elefeely.apiDirectory.users_url + '?token=' + $.cookie('token'),
+        url: elefeely.apiDirectory.current_user_url + '?token=' + $.cookie('token'),
         type: 'PUT',
         dataType: 'json',
         data: { user: { email: email } },
@@ -103,7 +103,7 @@ var elefeely = elefeely || {};
 
       if ( remove ) {
         $.ajax({
-          url: elefeely.apiDirectory.users_url + '?token=' + $.cookie('token'),
+          url: elefeely.apiDirectory.current_user_url + '?token=' + $.cookie('token'),
           type: 'DELETE',
           dataType: 'json',
           success: function (data) {

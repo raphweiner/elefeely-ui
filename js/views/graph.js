@@ -56,6 +56,8 @@ var elefeely = elefeely || {};
         data: data,
         formatter: function (y, data) { return parseInt(y * 100) + '%'}
       });
+
+      this.ifNoData(data);
     },
 
     graphDayOfWeek: function (evt) {
@@ -74,6 +76,8 @@ var elefeely = elefeely || {};
         ymax: 5,
         labels: ['Feeling']
       });
+
+      this.ifNoData(data);
     },
 
     graphHourOfDay: function (evt) {
@@ -93,6 +97,8 @@ var elefeely = elefeely || {};
         ymax: 5,
         parseTime: false
       });
+
+      this.ifNoData(data);
     },
 
     showTab: function (tab) {
@@ -114,6 +120,12 @@ var elefeely = elefeely || {};
 
     clearGraph: function () {
       this.$graph.html('');
+    },
+
+    ifNoData: function (data) {
+      if ( data.length === 0 ) {
+        this.$el.html(Handlebars.compile($('#no-data-template').html()));
+      }
     }
   });
 })();
