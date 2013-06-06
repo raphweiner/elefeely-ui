@@ -43,7 +43,9 @@ var elefeely = elefeely || {};
       return this;
     },
 
-    graphOverall: function () {
+    graphOverall: function (evt) {
+      if (evt) evt.preventDefault();
+
       var data;
 
       this.showTab('#overall');
@@ -56,12 +58,9 @@ var elefeely = elefeely || {};
       });
     },
 
-    showTab: function (tab) {
-      this.currentView = tab;
-      this.toggleActivePill(tab);
-    },
+    graphDayOfWeek: function (evt) {
+      if (evt) evt.preventDefault();
 
-    graphDayOfWeek: function (e) {
       var data;
 
       this.showTab('#day-of-week');
@@ -77,7 +76,9 @@ var elefeely = elefeely || {};
       });
     },
 
-    graphHourOfDay: function () {
+    graphHourOfDay: function (evt) {
+      if (evt) evt.preventDefault();
+
       var data;
 
       this.showTab('#hour-of-day');
@@ -92,6 +93,11 @@ var elefeely = elefeely || {};
         ymax: 5,
         parseTime: false
       });
+    },
+
+    showTab: function (tab) {
+      this.currentView = tab;
+      this.toggleActivePill(tab);
     },
 
     toggleActivePill: function (id) {

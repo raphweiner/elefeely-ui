@@ -17,26 +17,25 @@ var elefeely = elefeely || {};
       return this;
     },
 
-    togglePill: function (e) {
-      var target = $(e.currentTarget).find('a').text();
+    togglePill: function (evt) {
+      evt.preventDefault();
 
-      if (!$(e.currentTarget).hasClass('active')) {
+      var $currentTarget = $(evt.currentTarget),
+          target = $currentTarget.find('a').text();
+
+      if (!$currentTarget.hasClass('active')) {
         this.$(".toggle-pill").toggleClass("active");
         this.$("#submit-signup-login").text(target);
 
         this.clearError('.email');
         this.clearError('.password');
 
-        if (target === 'Login') {
-          this.$("#forgot-password").show();
-        } else {
-          this.$("#forgot-password").hide();
-        }
+        this.$('#forgot-password').toggle(target === 'Login');
       }
     },
 
-    submitSignupLogin: function () {
-      event.preventDefault();
+    submitSignupLogin: function (evt) {
+      evt.preventDefault();
 
       var intent = this.$("#submit-signup-login").text().toLowerCase(),
           email = this.$('#email').val(),

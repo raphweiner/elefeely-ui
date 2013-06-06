@@ -22,7 +22,9 @@ var elefeely = elefeely || {};
       return this;
     },
 
-    addPhone: function () {
+    addPhone: function (evt) {
+      evt.preventDefault();
+
       var number = this.$('#number').val().replace(/[^\d]/g, '');
 
       if ( number.length !== 10 ) {
@@ -52,7 +54,9 @@ var elefeely = elefeely || {};
       }
     },
 
-    deletePhone: function () {
+    deletePhone: function (evt) {
+      evt.preventDefault();
+
       $.ajax({
         url: elefeely.apiDirectory.current_user_phone_url + '?token=' + $.cookie('token'),
         type: 'DELETE',
@@ -66,7 +70,9 @@ var elefeely = elefeely || {};
       });
     },
 
-    updateEmail: function () {
+    updateEmail: function (evt) {
+      evt.preventDefault();
+
       var email = this.$('#email').val();
       $('.email-error').html('');
 
@@ -90,7 +96,9 @@ var elefeely = elefeely || {};
       });
     },
 
-    deleteAccount: function () {
+    deleteAccount: function (evt) {
+      evt.preventDefault();
+
       var remove = confirm('Are you sure? This will erase all your data');
 
       if ( remove ) {
