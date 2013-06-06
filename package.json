@@ -1,0 +1,11 @@
+{
+  "name": "elefeely",
+  "version": "0.0.1",
+  "dependencies": {
+
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-contrib-concat": "~0.1.3"
+  }
+}

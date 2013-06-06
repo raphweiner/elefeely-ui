@@ -16,9 +16,8 @@ var elefeely = elefeely || {};
 
       channel.bind('new_feeling', function(data) {
         this.collectiveFeelings.add(data);
-        console.log(data)
+
         if (elefeely.currentUser && data.user_id === elefeely.currentUser.id) {
-          console.log(data)
           this.personalFeelings.add(data);
         }
       }.bind(this));

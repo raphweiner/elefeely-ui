@@ -21,16 +21,16 @@ var elefeely = elefeely || {};
       evt.preventDefault();
 
       var $currentTarget = $(evt.currentTarget),
-          target = $currentTarget.find('a').text();
+          intent = $currentTarget.find('a').text();
 
       if (!$currentTarget.hasClass('active')) {
         this.$(".toggle-pill").toggleClass("active");
-        this.$("#submit-signup-login").text(target);
+        this.$("#submit-signup-login").text(intent);
 
         this.clearError('.email');
         this.clearError('.password');
 
-        this.$('#forgot-password').toggle(target === 'Login');
+        this.$('#forgot-password').toggle(intent === 'Login');
       }
     },
 
