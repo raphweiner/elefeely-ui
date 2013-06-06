@@ -23,7 +23,7 @@ var elefeely = elefeely || {};
     },
 
     addPhone: function () {
-      var number = this.$('#number').val();
+      var number = this.$('#number').val().replace(/[^\d]/g, '');
 
       if ( number.length !== 10 ) {
         this.$('.phone').addClass('error');
