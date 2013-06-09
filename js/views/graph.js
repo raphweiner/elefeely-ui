@@ -33,8 +33,7 @@ var elefeely = elefeely || {};
     },
 
     render: function () {
-      var diff = (Date.now() - Date.parse(this.collection.last().get('created_at'))),
-          updated = parseInt(diff / 60000);
+      var updated = this.calcUpdatedAt();
 
       this.$el.html(this.template({ view: this.viewTitle,
                                     size: this.collection.size(),
@@ -131,6 +130,18 @@ var elefeely = elefeely || {};
     ifNoData: function (data) {
       if ( data.length === 0 ) {
         this.$el.html(Handlebars.compile($('#no-data-template').html()));
+      }
+    },
+
+    calcUpdatedAt: function () {
+      var diff,
+          updated;
+
+      if ( !!this.collection.last() ) {
+        diff = (Date.now() - Date.parse(this.collection.last().get('created_at')));
+        return parseInt(diff / 60000);
+      } else {
+        return '-';
       }
     }
   });

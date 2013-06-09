@@ -63,8 +63,6 @@ var elefeely = elefeely || {};
           error: function (response) {
             var errors = response.responseJSON;
 
-            console.log(errors);
-
             if (errors.email) {
               $('.email').addClass('error');
               $('.email-error').html(errors.email);
